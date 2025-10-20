@@ -14,10 +14,12 @@
     background-color: #0F172A;
     font-family: Inter, SF Pro Display, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
     color: #FFFFFF;
+    overflow-x: hidden;
   }
 
   html {
     background-color: #0F172A;
+    overflow-x: hidden;
   }
 
   * {

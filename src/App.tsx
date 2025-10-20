@@ -16,7 +16,7 @@ function App() {
   const roi = roiPercent.toFixed(0);
 
   return (
-    <div className="min-h-screen bg-[#0F172A] text-white">
+    <div className="min-h-screen bg-[#0F172A] text-white overflow-x-hidden">
       {/* Hero Section */}
       <section className="px-4 sm:px-6 py-20 sm:py-32 max-w-5xl mx-auto text-center">
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 sm:mb-8 leading-tight">
