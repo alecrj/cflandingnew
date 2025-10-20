@@ -7,42 +7,48 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Stripe-inspired color system
-        text: {
-          primary: '#0A2540',      // Dark blue-gray (main text)
-          secondary: '#425466',    // Medium gray (body text)
-          tertiary: '#6B7C93',     // Light gray (captions)
+        // VIBRANT, PLAYFUL DROPBOX-INSPIRED COLORS
+        primary: {
+          DEFAULT: '#4F46E5', // Electric Indigo
+          50: '#EEF2FF',
+          100: '#E0E7FF',
+          200: '#C7D2FE',
+          300: '#A5B4FC',
+          400: '#818CF8',
+          500: '#6366F1',
+          600: '#4F46E5',
+          700: '#4338CA',
+          800: '#3730A3',
+          900: '#312E81',
         },
-        brand: {
-          purple: '#635BFF',       // Primary brand (like Stripe)
-          'purple-dark': '#5851EA', // Hover state
-          blue: '#0066FF',         // Secondary brand
-          'blue-dark': '#0052CC',  // Hover state
+        secondary: {
+          DEFAULT: '#7C3AED', // Vivid Purple
+          500: '#7C3AED',
+          600: '#6D28D9',
+          700: '#5B21B6',
         },
-        bg: {
-          primary: '#FFFFFF',      // Pure white
-          secondary: '#FAFAFA',    // Very light gray
-          tertiary: '#F6F9FC',     // Subtle blue-gray
+        accent: {
+          pink: '#EC4899',      // Hot Pink
+          cyan: '#06B6D4',      // Bright Cyan
+          orange: '#F59E0B',    // Vibrant Orange
+          lime: '#84CC16',      // Fresh Lime
         },
-        border: {
-          light: '#E3E8EF',        // Subtle gray border
-          medium: '#CDD5DF',       // Medium gray border
-          DEFAULT: '#E3E8EF',
+        dark: {
+          DEFAULT: '#0F172A',   // Deep Navy
+          lighter: '#1E293B',
         },
+        // Keep success/warning/error for semantic use
         success: {
-          DEFAULT: '#00D924',      // Bright green
-          dark: '#00B31D',
-          light: '#E6F9EA',
+          DEFAULT: '#10B981',
+          light: '#D1FAE5',
         },
         warning: {
-          DEFAULT: '#F5A623',
-          dark: '#E09615',
-          light: '#FEF6E7',
+          DEFAULT: '#F59E0B',
+          light: '#FEF3C7',
         },
         error: {
-          DEFAULT: '#E02020',
-          dark: '#C41C1C',
-          light: '#FCEAEA',
+          DEFAULT: '#EF4444',
+          light: '#FEE2E2',
         },
       },
       fontFamily: {
@@ -56,16 +62,26 @@ export default {
         ],
       },
       fontSize: {
-        // Stripe-inspired typography
-        'hero': ['72px', { lineHeight: '1.1', letterSpacing: '-0.02em', fontWeight: '700' }],
-        'hero-mobile': ['48px', { lineHeight: '1.1', letterSpacing: '-0.02em', fontWeight: '700' }],
-        'section': ['56px', { lineHeight: '1.2', letterSpacing: '-0.01em', fontWeight: '700' }],
-        'section-mobile': ['36px', { lineHeight: '1.2', letterSpacing: '-0.01em', fontWeight: '700' }],
-        'subsection': ['36px', { lineHeight: '1.3', letterSpacing: '-0.01em', fontWeight: '600' }],
-        'subsection-mobile': ['28px', { lineHeight: '1.3', fontWeight: '600' }],
-        'body-large': ['20px', { lineHeight: '1.6', fontWeight: '400' }],
-        'body': ['17px', { lineHeight: '1.6', fontWeight: '400' }],
-        'caption': ['15px', { lineHeight: '1.5', fontWeight: '400' }],
+        // BOLD, DRAMATIC TYPOGRAPHY
+        'hero': ['96px', { lineHeight: '1.0', letterSpacing: '-0.04em', fontWeight: '900' }],
+        'hero-mobile': ['56px', { lineHeight: '1.0', letterSpacing: '-0.03em', fontWeight: '900' }],
+        'section': ['64px', { lineHeight: '1.1', letterSpacing: '-0.03em', fontWeight: '800' }],
+        'section-mobile': ['40px', { lineHeight: '1.1', letterSpacing: '-0.02em', fontWeight: '800' }],
+        'subsection': ['40px', { lineHeight: '1.2', letterSpacing: '-0.02em', fontWeight: '700' }],
+        'subsection-mobile': ['28px', { lineHeight: '1.2', fontWeight: '700' }],
+        'body-large': ['22px', { lineHeight: '1.7', fontWeight: '500' }],
+        'body': ['18px', { lineHeight: '1.7', fontWeight: '400' }],
+        'caption': ['16px', { lineHeight: '1.5', fontWeight: '400' }],
+      },
+      backgroundImage: {
+        // VIBRANT GRADIENTS
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'hero-gradient': 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        'purple-gradient': 'linear-gradient(135deg, #7C3AED 0%, #4F46E5 100%)',
+        'blue-gradient': 'linear-gradient(135deg, #06B6D4 0%, #4F46E5 100%)',
+        'pink-gradient': 'linear-gradient(135deg, #EC4899 0%, #7C3AED 100%)',
+        'mesh-gradient': 'radial-gradient(at 40% 20%, #7C3AED 0px, transparent 50%), radial-gradient(at 80% 0%, #4F46E5 0px, transparent 50%), radial-gradient(at 0% 50%, #EC4899 0px, transparent 50%)',
       },
       spacing: {
         '128': '32rem',

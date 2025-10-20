@@ -16,7 +16,7 @@ export const Card = ({
   padding = 'default',
   variant = 'default'
 }: CardProps) => {
-  const baseStyles = "bg-bg-primary rounded-xl transition-all duration-200";
+  const baseStyles = "bg-white rounded-3xl transition-all duration-300 backdrop-blur-sm";
 
   const paddingStyles = {
     none: '',
@@ -25,21 +25,21 @@ export const Card = ({
   };
 
   const variantStyles = {
-    default: 'border border-border-light shadow-card',
-    highlighted: 'border-2 border-brand-purple shadow-card',
-    danger: 'border border-error-light bg-error-light'
+    default: 'border border-primary-200/30 shadow-lg',
+    highlighted: 'border-2 border-primary-400 shadow-xl bg-gradient-to-br from-white to-primary-50/30',
+    danger: 'border border-error bg-error-light'
   };
 
   const hoverStyles = hover
-    ? "hover:shadow-card-hover"
+    ? "hover:shadow-2xl hover:-translate-y-1 hover:border-primary-300/50"
     : "";
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       className={`${baseStyles} ${paddingStyles[padding]} ${variantStyles[variant]} ${hoverStyles} ${className}`}
     >
       {children}

@@ -19,23 +19,25 @@ const AudioPlayer = ({ title, duration }: AudioPlayerProps) => {
   };
 
   return (
-    <Card hover className="p-6">
-      <h4 className="font-semibold text-primary-900 mb-4">{title}</h4>
+    <Card hover className="p-6 bg-white/90 backdrop-blur-sm">
+      <h4 className="font-bold text-gray-900 mb-4 text-left">{title}</h4>
       <div className="flex items-center gap-4">
-        <button
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
           onClick={togglePlay}
-          className="flex-shrink-0 w-12 h-12 rounded-full bg-accent hover:bg-accent-hover text-white flex items-center justify-center transition-all hover:scale-105"
+          className="flex-shrink-0 w-14 h-14 rounded-full bg-gradient-to-br from-accent-pink to-accent-orange text-white flex items-center justify-center transition-all shadow-lg hover:shadow-xl"
           aria-label={isPlaying ? 'Pause' : 'Play'}
         >
-          {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5 ml-0.5" />}
-        </button>
+          {isPlaying ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6 ml-0.5" />}
+        </motion.button>
         <div className="flex-1">
-          <div className="relative h-2 bg-primary-100 rounded-full overflow-hidden">
+          <div className="relative h-2.5 bg-gray-200 rounded-full overflow-hidden">
             <motion.div
-              className="absolute left-0 top-0 h-full bg-accent"
+              className="absolute left-0 top-0 h-full bg-gradient-to-r from-accent-pink to-accent-orange"
               initial={{ width: '0%' }}
               animate={{ width: isPlaying ? '100%' : `${progress}%` }}
-              transition={{ duration: isPlaying ? 45 : 0 }}
+              transition={{ duration: isPlaying ? 45 : 0, ease: 'linear' }}
               onAnimationComplete={() => {
                 if (isPlaying) {
                   setIsPlaying(false);
@@ -44,7 +46,7 @@ const AudioPlayer = ({ title, duration }: AudioPlayerProps) => {
               }}
             />
           </div>
-          <div className="flex justify-between mt-2 text-caption text-primary-600">
+          <div className="flex justify-between mt-2 text-sm text-gray-600 font-medium">
             <span>0:00</span>
             <span>{duration}</span>
           </div>
@@ -56,43 +58,70 @@ const AudioPlayer = ({ title, duration }: AudioPlayerProps) => {
 
 export const LiveDemo = () => {
   return (
-    <Section background="gray" id="demo">
-      <div className="max-w-5xl mx-auto text-center">
+    <Section background="gradient-blue" id="demo">
+      <div className="max-w-6xl mx-auto text-center">
         {/* Headline */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-section-mobile md:text-section font-bold text-text-primary"
+          className="text-section-mobile md:text-section text-white mb-6"
         >
           Hear ClientFlow in Action
         </motion.h2>
 
-        {/* Demo Phone Card */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-12 md:mt-16"
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="text-body-large text-white/80 max-w-3xl mx-auto mb-16"
         >
-          <Card variant="highlighted" padding="large" hover={false} className="max-w-2xl mx-auto">
-            <Phone className="w-12 h-12 text-brand-purple mx-auto mb-6" />
-            <a
-              href="tel:5551234822"
-              className="text-4xl md:text-5xl font-bold text-text-primary hover:text-brand-purple transition-colors block mb-4"
-            >
-              (555) 123-HVAC
-            </a>
-            <p className="text-body text-text-secondary mb-6">
-              Call now to talk to our AI receptionist
-            </p>
-            <Button size="large" href="tel:5551234822" className="w-full md:w-auto">
-              <Phone className="w-5 h-5 mr-2" />
-              Call Now
-            </Button>
-          </Card>
+          Experience the AI that's revolutionizing HVAC customer service
+        </motion.p>
+
+        {/* Demo Phone Card */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="mb-20"
+        >
+          <div className="relative max-w-3xl mx-auto">
+            {/* Glow effect */}
+            <div className="absolute inset-0 bg-accent-cyan/30 rounded-3xl blur-3xl" />
+
+            <Card variant="highlighted" padding="large" hover={false} className="relative bg-white/95 backdrop-blur-xl">
+              <motion.div
+                animate={{ scale: [1, 1.05, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                <Phone className="w-16 h-16 text-primary-600 mx-auto mb-6" />
+              </motion.div>
+
+              <a
+                href="tel:5551234822"
+                className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent hover:from-secondary-600 hover:to-primary-600 transition-all block mb-4"
+              >
+                (555) 123-HVAC
+              </a>
+
+              <p className="text-body-large text-gray-700 mb-8 font-medium">
+                Call now to talk with our AI receptionist
+              </p>
+
+              <Button size="large" href="tel:5551234822">
+                <Phone className="w-5 h-5 mr-2" />
+                Call Now
+              </Button>
+
+              <p className="text-sm text-gray-500 mt-6">
+                Available 24/7 • Answers in under 2 seconds
+              </p>
+            </Card>
+          </div>
         </motion.div>
 
         {/* Audio Examples */}
@@ -101,13 +130,12 @@ export const LiveDemo = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-16 md:mt-24"
         >
-          <h3 className="text-subsection-mobile md:text-subsection font-semibold text-text-primary mb-8">
+          <h3 className="text-subsection-mobile md:text-subsection text-white mb-12">
             Or listen to real conversations
           </h3>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <AudioPlayer
               title="Emergency Call: No Heat at 2 AM"
               duration="0:45"
