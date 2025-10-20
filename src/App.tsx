@@ -7,6 +7,9 @@ function App() {
   const [ticketValue, setTicketValue] = useState(2500);
   const [missedCallsPerWeek, setMissedCallsPerWeek] = useState(5);
 
+  // Cost Comparison State
+  const [receptionistSalary, setReceptionistSalary] = useState(45000);
+
   // ROI Calculations
   const weeklyLost = ticketValue * missedCallsPerWeek;
   const monthlyLost = weeklyLost * 4;
@@ -18,8 +21,37 @@ function App() {
 
   return (
     <div className="min-h-screen bg-[#0A0E14] text-white overflow-x-hidden">
+      {/* Navigation */}
+      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-[#0A0E14]/80 backdrop-blur-xl">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center">
+                <Phone className="w-4 h-4 text-white" />
+              </div>
+              <span className="text-xl font-bold">ClientFlow</span>
+            </div>
+
+            <div className="hidden md:flex items-center gap-8 text-sm">
+              <a href="#features" className="text-gray-400 hover:text-white transition">Features</a>
+              <a href="#pricing" className="text-gray-400 hover:text-white transition">Pricing</a>
+              <a href="#demo" className="text-gray-400 hover:text-white transition">Demo</a>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <a href="tel:5551234822" className="hidden sm:block text-sm text-gray-400 hover:text-white transition">
+                (555) 123-HVAC
+              </a>
+              <button className="bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white px-5 py-2.5 rounded-lg text-sm font-semibold transition shadow-lg">
+                Start Free Trial
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+
       {/* Hero Section */}
-      <section className="px-4 sm:px-6 py-24 sm:py-40 relative overflow-hidden">
+      <section id="demo" className="px-4 sm:px-6 pt-32 sm:pt-40 pb-24 sm:pb-32 relative overflow-hidden">
         {/* Enhanced gradient mesh background */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-[-10%] left-[10%] w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
@@ -159,7 +191,7 @@ function App() {
       </section>
 
       {/* Features Grid */}
-      <section className="px-4 sm:px-6 py-20 sm:py-32 bg-[#0A0E14] relative overflow-hidden">
+      <section id="features" className="px-4 sm:px-6 py-20 sm:py-32 bg-[#0A0E14] relative overflow-hidden">
         {/* Gradient mesh */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none"></div>
 
@@ -222,6 +254,169 @@ function App() {
               </div>
               <h3 className="text-xl font-bold mb-3 text-white">Call Analytics</h3>
               <p className="text-gray-400 leading-relaxed">See what customers are calling about. Track peak times. Make data-driven decisions.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Cost Comparison Calculator */}
+      <section className="px-4 sm:px-6 py-20 sm:py-32 bg-gradient-to-b from-[#0A0E14] via-[#0D1117] to-[#0A0E14] relative overflow-hidden">
+        {/* Gradient accents */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="max-w-5xl mx-auto relative z-10">
+          <div className="text-center mb-16 sm:mb-20">
+            <div className="inline-block mb-4">
+              <div className="bg-red-500/10 border border-red-500/20 rounded-full px-4 py-2">
+                <span className="text-sm font-semibold text-red-400">Stop Overpaying</span>
+              </div>
+            </div>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight">
+              You're Paying <span className="bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">10x More</span> For Less Coverage
+            </h2>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              Traditional receptionists only work 40 hours a week. ClientFlow works 168 hours—for a fraction of the cost.
+            </p>
+          </div>
+
+          {/* Comparison Calculator */}
+          <div className="bg-[#0D1117] border border-gray-800/50 rounded-3xl p-8 sm:p-12 shadow-2xl">
+            {/* Slider */}
+            <div className="mb-12">
+              <div className="flex justify-between items-center mb-4">
+                <label className="text-lg font-semibold text-white">Current Receptionist Annual Salary</label>
+                <span className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                  ${receptionistSalary.toLocaleString()}
+                </span>
+              </div>
+              <input
+                type="range"
+                min="30000"
+                max="70000"
+                step="5000"
+                value={receptionistSalary}
+                onChange={(e) => setReceptionistSalary(Number(e.target.value))}
+                className="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer slider-blue"
+                style={{
+                  background: `linear-gradient(to right, #0066FF 0%, #06B6D4 ${((receptionistSalary - 30000) / 40000) * 100}%, #1f2937 ${((receptionistSalary - 30000) / 40000) * 100}%, #1f2937 100%)`
+                }}
+              />
+              <div className="flex justify-between text-sm text-gray-500 mt-2">
+                <span>$30,000</span>
+                <span>$70,000</span>
+              </div>
+            </div>
+
+            {/* Comparison Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+              {/* Traditional Receptionist */}
+              <div className="bg-red-950/20 border-2 border-red-500/30 rounded-2xl p-8">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-12 h-12 rounded-xl bg-red-500/20 flex items-center justify-center">
+                    <XCircle className="w-6 h-6 text-red-400" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white">Traditional Receptionist</h3>
+                </div>
+
+                <div className="space-y-4 mb-8">
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-400">Annual Salary</span>
+                    <span className="text-xl font-bold text-white">${receptionistSalary.toLocaleString()}</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-400">Benefits (30%)</span>
+                    <span className="text-xl font-bold text-white">${(receptionistSalary * 0.3).toLocaleString()}</span>
+                  </div>
+                  <div className="h-px bg-red-500/20"></div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-300 font-semibold">Total Annual Cost</span>
+                    <span className="text-2xl font-bold text-red-400">${(receptionistSalary * 1.3).toLocaleString()}</span>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <div className="flex items-start gap-2 text-sm text-gray-400">
+                    <XCircle className="w-4 h-4 mt-0.5 text-red-400 flex-shrink-0" />
+                    <span>Only 40 hours/week (24% coverage)</span>
+                  </div>
+                  <div className="flex items-start gap-2 text-sm text-gray-400">
+                    <XCircle className="w-4 h-4 mt-0.5 text-red-400 flex-shrink-0" />
+                    <span>Sick days, vacations, breaks</span>
+                  </div>
+                  <div className="flex items-start gap-2 text-sm text-gray-400">
+                    <XCircle className="w-4 h-4 mt-0.5 text-red-400 flex-shrink-0" />
+                    <span>Training & management time</span>
+                  </div>
+                  <div className="flex items-start gap-2 text-sm text-gray-400">
+                    <XCircle className="w-4 h-4 mt-0.5 text-red-400 flex-shrink-0" />
+                    <span>Misses 76% of calls (nights/weekends)</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* ClientFlow */}
+              <div className="bg-gradient-to-br from-blue-950/40 to-cyan-950/40 border-2 border-blue-500/50 rounded-2xl p-8 relative overflow-hidden">
+                {/* Glow effect */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-blue-600/20 to-cyan-500/20 rounded-2xl blur-xl"></div>
+
+                <div className="relative">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/30 to-cyan-500/30 flex items-center justify-center">
+                      <CheckCircle className="w-6 h-6 text-blue-400" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-white">ClientFlow AI</h3>
+                  </div>
+
+                  <div className="space-y-4 mb-8">
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-400">Annual Cost</span>
+                      <span className="text-xl font-bold text-white">$7,164</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-400">Setup & Training</span>
+                      <span className="text-xl font-bold text-white">$0</span>
+                    </div>
+                    <div className="h-px bg-blue-500/20"></div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-300 font-semibold">Total Annual Cost</span>
+                      <span className="text-2xl font-bold text-green-400">$7,164</span>
+                    </div>
+                  </div>
+
+                  <div className="space-y-3">
+                    <div className="flex items-start gap-2 text-sm text-gray-300">
+                      <CheckCircle className="w-4 h-4 mt-0.5 text-green-400 flex-shrink-0" />
+                      <span>24/7/365 coverage (100%)</span>
+                    </div>
+                    <div className="flex items-start gap-2 text-sm text-gray-300">
+                      <CheckCircle className="w-4 h-4 mt-0.5 text-green-400 flex-shrink-0" />
+                      <span>Never sick, never takes breaks</span>
+                    </div>
+                    <div className="flex items-start gap-2 text-sm text-gray-300">
+                      <CheckCircle className="w-4 h-4 mt-0.5 text-green-400 flex-shrink-0" />
+                      <span>Instant setup, zero training</span>
+                    </div>
+                    <div className="flex items-start gap-2 text-sm text-gray-300">
+                      <CheckCircle className="w-4 h-4 mt-0.5 text-green-400 flex-shrink-0" />
+                      <span>Answers every call in &lt;2 seconds</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Savings Highlight */}
+            <div className="mt-8 bg-gradient-to-r from-green-950/40 to-emerald-950/40 border border-green-500/30 rounded-2xl p-6 sm:p-8 text-center">
+              <p className="text-gray-400 mb-2">Your Annual Savings</p>
+              <p className="text-5xl sm:text-6xl font-bold bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent mb-4">
+                ${((receptionistSalary * 1.3) - 7164).toLocaleString()}
+              </p>
+              <p className="text-xl text-gray-300">
+                That's <span className="font-bold text-white">{(((receptionistSalary * 1.3) - 7164) / 7164).toFixed(1)}x</span> your investment back—while getting 4x more coverage
+              </p>
             </div>
           </div>
         </div>
@@ -450,7 +645,7 @@ function App() {
       </section>
 
       {/* Pricing Section */}
-      <section className="px-4 sm:px-6 py-20 sm:py-32 bg-[#0A0E14] relative overflow-hidden">
+      <section id="pricing" className="px-4 sm:px-6 py-20 sm:py-32 bg-[#0A0E14] relative overflow-hidden">
         {/* Gradient mesh */}
         <div className="absolute top-1/2 right-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none"></div>
 
