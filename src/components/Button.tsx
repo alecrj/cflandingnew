@@ -22,16 +22,16 @@ export const Button = ({
   type = 'button',
   disabled = false
 }: ButtonProps) => {
-  const baseStyles = "font-semibold rounded-xl transition-all duration-300 ease-smooth inline-flex items-center justify-center cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed";
+  const baseStyles = "font-semibold rounded-lg transition-colors duration-200 inline-flex items-center justify-center cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed";
 
   const sizeStyles = {
-    default: "px-6 py-3.5 text-[15px] min-h-[48px]",
-    large: "px-8 py-4 text-base min-h-[56px] md:px-10 md:py-5"
+    default: "px-6 py-3 text-[15px] h-12",
+    large: "px-8 py-4 text-base h-14"
   };
 
   const variantStyles = {
-    primary: "bg-accent-500 text-white shadow-sm hover:bg-accent-600 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:shadow-sm",
-    secondary: "bg-white border border-primary-200 text-primary-900 shadow-sm hover:bg-primary-50 hover:border-primary-300 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:shadow-sm"
+    primary: "bg-brand-purple text-white shadow-button hover:bg-brand-purple-dark",
+    secondary: "bg-white border border-brand-purple text-brand-purple hover:bg-bg-tertiary"
   };
 
   const buttonElement = (

@@ -14,17 +14,17 @@ export const Section = ({
   id
 }: SectionProps) => {
   const backgroundStyles = {
-    white: 'bg-white',
-    gray: 'bg-gradient-to-b from-primary-50/30 to-primary-50/50',
-    dark: 'bg-primary-900 text-white'
+    white: 'bg-bg-primary',
+    gray: 'bg-bg-secondary',
+    dark: 'bg-text-primary text-white'
   };
 
   return (
     <section
       id={id}
-      className={`py-16 md:py-24 px-4 md:px-8 ${backgroundStyles[background]} ${className}`}
+      className={`py-20 md:py-32 px-4 md:px-8 ${backgroundStyles[background]} ${className}`}
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         {children}
       </div>
     </section>

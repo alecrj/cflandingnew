@@ -16,22 +16,22 @@ export const Card = ({
   padding = 'default',
   variant = 'default'
 }: CardProps) => {
-  const baseStyles = "bg-white border rounded-2xl transition-all duration-300 ease-smooth";
+  const baseStyles = "bg-bg-primary rounded-xl transition-all duration-200";
 
   const paddingStyles = {
     none: '',
-    default: 'p-6 md:p-8',
-    large: 'p-10 md:p-12'
+    default: 'p-8',
+    large: 'p-12'
   };
 
   const variantStyles = {
-    default: 'border-primary-200/60 shadow-sm',
-    highlighted: 'border-2 border-accent-500 shadow-md ring-4 ring-accent-50',
-    danger: 'border-error-50 bg-error-50/50'
+    default: 'border border-border-light shadow-card',
+    highlighted: 'border-2 border-brand-purple shadow-card',
+    danger: 'border border-error-light bg-error-light'
   };
 
   const hoverStyles = hover
-    ? "hover:shadow-lift hover:-translate-y-0.5 hover:border-primary-300/60"
+    ? "hover:shadow-card-hover"
     : "";
 
   return (

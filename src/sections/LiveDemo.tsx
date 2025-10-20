@@ -64,7 +64,7 @@ export const LiveDemo = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-3xl md:text-section-mobile lg:text-section font-bold text-primary-900"
+          className="text-section-mobile md:text-section font-bold text-text-primary"
         >
           Hear ClientFlow in Action
         </motion.h2>
@@ -78,14 +78,14 @@ export const LiveDemo = () => {
           className="mt-12 md:mt-16"
         >
           <Card variant="highlighted" padding="large" hover={false} className="max-w-2xl mx-auto">
-            <Phone className="w-12 h-12 text-accent mx-auto mb-6" />
+            <Phone className="w-12 h-12 text-brand-purple mx-auto mb-6" />
             <a
               href="tel:5551234822"
-              className="text-4xl md:text-5xl font-bold text-primary-900 hover:text-accent transition-colors block mb-4"
+              className="text-4xl md:text-5xl font-bold text-text-primary hover:text-brand-purple transition-colors block mb-4"
             >
               (555) 123-HVAC
             </a>
-            <p className="text-body text-primary-600 mb-6">
+            <p className="text-body text-text-secondary mb-6">
               Call now to talk to our AI receptionist
             </p>
             <Button size="large" href="tel:5551234822" className="w-full md:w-auto">
@@ -103,7 +103,7 @@ export const LiveDemo = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-16 md:mt-24"
         >
-          <h3 className="text-2xl md:text-subsection-mobile lg:text-subsection font-semibold text-primary-900 mb-8">
+          <h3 className="text-subsection-mobile md:text-subsection font-semibold text-text-primary mb-8">
             Or listen to real conversations
           </h3>
 
