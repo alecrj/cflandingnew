@@ -12,7 +12,8 @@ function App() {
   const annualLost = monthlyLost * 12;
   const clientFlowCost = 597 * 12; // Using Professional tier
   const annualSavings = annualLost - clientFlowCost;
-  const roi = ((annualSavings / clientFlowCost) * 100).toFixed(0);
+  const roiPercent = ((annualSavings / clientFlowCost) * 100);
+  const roi = roiPercent.toFixed(0);
 
   return (
     <div className="min-h-screen bg-[#0F172A] text-white">
@@ -358,10 +359,10 @@ function App() {
               <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-green-500/30 text-center">
                 <div className="text-xs sm:text-sm text-gray-400 mb-2">Return on Investment</div>
                 <div className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-green-400 to-green-300 bg-clip-text text-transparent">
-                  {roi > 0 ? roi : 0}%
+                  {roiPercent > 0 ? roi : 0}%
                 </div>
                 <p className="text-sm sm:text-base text-gray-300 mt-4 px-2">
-                  For every $1 you spend on ClientFlow, you make ${(Number(roi) / 100 + 1).toFixed(2)}
+                  For every $1 you spend on ClientFlow, you make ${(roiPercent / 100 + 1).toFixed(2)}
                 </p>
               </div>
             </div>
