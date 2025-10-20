@@ -12,16 +12,39 @@ export default {
           50: '#F8FAFC',
           100: '#F1F5F9',
           200: '#E2E8F0',
+          300: '#CBD5E1',
+          400: '#94A3B8',
+          500: '#64748B',
           600: '#475569',
+          700: '#334155',
+          800: '#1E293B',
           900: '#0F172A',
         },
         accent: {
           DEFAULT: '#0066FF', // Electric blue
+          50: '#EFF6FF',
+          100: '#DBEAFE',
+          500: '#0066FF',
+          600: '#0052CC',
+          700: '#0047B3',
           hover: '#0052CC',
         },
-        success: '#10B981', // Emerald
-        warning: '#F59E0B', // Amber
-        error: '#EF4444', // Red
+        success: {
+          DEFAULT: '#10B981',
+          50: '#ECFDF5',
+          500: '#10B981',
+          600: '#059669',
+        },
+        warning: {
+          DEFAULT: '#F59E0B',
+          50: '#FFFBEB',
+          500: '#F59E0B',
+        },
+        error: {
+          DEFAULT: '#EF4444',
+          50: '#FEF2F2',
+          500: '#EF4444',
+        },
       },
       fontFamily: {
         sans: [
@@ -50,13 +73,19 @@ export default {
         '160': '40rem',
       },
       boxShadow: {
-        'subtle': '0 1px 3px rgba(0, 0, 0, 0.1)',
-        'lift': '0 10px 40px rgba(0, 0, 0, 0.1)',
-        'lift-lg': '0 20px 60px rgba(0, 0, 0, 0.15)',
+        'subtle': '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+        'sm': '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1)',
+        'DEFAULT': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)',
+        'md': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1)',
+        'lift': '0 12px 24px -4px rgba(0, 0, 0, 0.08), 0 8px 16px -4px rgba(0, 0, 0, 0.03)',
+        'lift-lg': '0 20px 40px -8px rgba(0, 0, 0, 0.12), 0 12px 24px -6px rgba(0, 0, 0, 0.05)',
+        'inner': 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.05)',
       },
       borderRadius: {
+        'lg': '10px',
         'xl': '12px',
         '2xl': '16px',
+        '3xl': '24px',
       },
       transitionDuration: {
         '200': '200ms',

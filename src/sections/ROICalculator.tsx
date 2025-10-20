@@ -96,14 +96,14 @@ export const ROICalculator = () => {
             </div>
 
             {/* Output 1: Savings */}
-            <div className="mb-8 p-6 bg-success/5 rounded-xl border-2 border-success/20">
+            <div className="mb-8 p-6 bg-success-50/50 rounded-2xl border border-success-500/20">
               <div className="flex items-center gap-2 mb-2">
-                <Check className="w-6 h-6 text-success" strokeWidth={3} />
-                <p className="text-body font-semibold text-primary-900">
+                <Check className="w-5 h-5 text-success-600" strokeWidth={2.5} />
+                <p className="text-base font-semibold text-primary-900">
                   YOUR SAVINGS:
                 </p>
               </div>
-              <p className="text-4xl font-bold text-success">
+              <p className="text-4xl font-bold text-success-600">
                 $<AnimatedNumber value={savings} />/year
               </p>
             </div>
@@ -151,34 +151,34 @@ export const ROICalculator = () => {
             </div>
 
             {/* Output 2: Captured Revenue */}
-            <div className="mb-8 p-6 bg-success/5 rounded-xl border-2 border-success/20">
+            <div className="mb-8 p-6 bg-success-50/50 rounded-2xl border border-success-500/20">
               <div className="flex items-center gap-2 mb-2">
-                <Check className="w-6 h-6 text-success" strokeWidth={3} />
-                <p className="text-body font-semibold text-primary-900">
+                <Check className="w-5 h-5 text-success-600" strokeWidth={2.5} />
+                <p className="text-base font-semibold text-primary-900">
                   CAPTURED REVENUE:
                 </p>
               </div>
-              <p className="text-4xl font-bold text-success">
+              <p className="text-4xl font-bold text-success-600">
                 $<AnimatedNumber value={capturedRevenue} />/year
               </p>
-              <p className="text-sm text-primary-600 mt-2">
+              <p className="text-sm text-primary-500 mt-2">
                 ({missedCalls} calls × 52 weeks × ${avgJobValue})
               </p>
             </div>
 
-            <div className="border-t-2 border-primary-200 my-8" />
+            <div className="border-t border-primary-200/60 my-8" />
 
             {/* Final Output: Total Benefit */}
-            <div className="mb-6 p-8 bg-gradient-to-br from-accent/10 to-accent/5 rounded-xl border-2 border-accent">
-              <p className="text-body-large font-semibold text-primary-900 mb-2">
+            <div className="mb-6 p-8 bg-gradient-to-br from-accent-50 to-accent-100/50 rounded-2xl border border-accent-500/30 shadow-sm">
+              <p className="text-lg font-semibold text-primary-900 mb-2">
                 TOTAL ANNUAL BENEFIT:
               </p>
-              <p className="text-5xl md:text-6xl font-bold text-accent mb-4">
+              <p className="text-5xl md:text-6xl font-bold text-accent-600 mb-4">
                 $<AnimatedNumber value={totalBenefit} />
               </p>
               <div className="flex items-center gap-4">
-                <p className="text-2xl font-bold text-primary-900">
-                  Your ROI: <span className="text-accent"><AnimatedNumber value={Number(roi)} />%</span>
+                <p className="text-xl font-bold text-primary-900">
+                  Your ROI: <span className="text-accent-600"><AnimatedNumber value={Number(roi)} />%</span>
                 </p>
               </div>
             </div>

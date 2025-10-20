@@ -15,14 +15,14 @@ export const Section = ({
 }: SectionProps) => {
   const backgroundStyles = {
     white: 'bg-white',
-    gray: 'bg-primary-50',
+    gray: 'bg-gradient-to-b from-primary-50/30 to-primary-50/50',
     dark: 'bg-primary-900 text-white'
   };
 
   return (
     <section
       id={id}
-      className={`py-16 md:py-32 px-4 md:px-8 ${backgroundStyles[background]} ${className}`}
+      className={`py-16 md:py-24 px-4 md:px-8 ${backgroundStyles[background]} ${className}`}
     >
       <div className="max-w-7xl mx-auto">
         {children}

@@ -40,9 +40,9 @@ const PricingCard = ({
         className={`h-full flex flex-col ${highlighted ? 'scale-105 md:scale-110' : ''}`}
       >
         {highlighted && (
-          <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-            <div className="bg-accent text-white px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-1 shadow-lift whitespace-nowrap">
-              <Star className="w-4 h-4 fill-current" />
+          <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+            <div className="bg-accent-500 text-white px-4 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5 shadow-sm whitespace-nowrap">
+              <Star className="w-3.5 h-3.5 fill-current" />
               MOST POPULAR
             </div>
           </div>
