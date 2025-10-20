@@ -16,9 +16,14 @@ function App() {
   const roi = roiPercent.toFixed(0);
 
   return (
-    <div className="min-h-screen bg-[#0F172A] text-white overflow-x-hidden">
+    <div className="min-h-screen bg-[#0A0E14] text-white overflow-x-hidden">
       {/* Hero Section */}
-      <section className="px-4 sm:px-6 py-20 sm:py-32 max-w-5xl mx-auto text-center">
+      <section className="px-4 sm:px-6 py-24 sm:py-40 max-w-5xl mx-auto text-center relative">
+        {/* Gradient mesh background */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute top-20 right-1/4 w-80 h-80 bg-cyan-500/8 rounded-full blur-3xl"></div>
+        </div>
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 sm:mb-8 leading-tight">
           Stop Losing <span className="text-[#0066FF]">$2,500 Emergency Calls</span> to Voicemail
         </h1>
@@ -48,93 +53,96 @@ function App() {
         <p className="text-xs sm:text-sm text-gray-500 px-4">No credit card • Cancel anytime • Setup in 5 minutes</p>
 
         {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mt-16 sm:mt-24 max-w-4xl mx-auto">
-          <div className="bg-[#1E293B] border border-gray-800 rounded-xl p-6 sm:p-8">
-            <div className="text-3xl sm:text-4xl font-bold mb-2 text-[#0066FF]">100%</div>
-            <div className="text-gray-300 font-medium text-sm sm:text-base">Calls Answered</div>
-            <div className="text-xs sm:text-sm text-gray-500 mt-1">Never miss another lead</div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mt-20 sm:mt-32 max-w-4xl mx-auto relative z-10">
+          <div className="bg-[#151922] shadow-premium-lg rounded-2xl p-8 sm:p-10 hover:shadow-glow-blue transition-all duration-300 group">
+            <div className="text-4xl sm:text-5xl font-bold mb-3 bg-gradient-to-br from-blue-400 to-cyan-400 bg-clip-text text-transparent">100%</div>
+            <div className="text-white font-semibold text-sm sm:text-base">Calls Answered</div>
+            <div className="text-xs sm:text-sm text-gray-400 mt-2">Never miss another lead</div>
           </div>
-          <div className="bg-[#1E293B] border border-gray-800 rounded-xl p-6 sm:p-8">
-            <div className="text-3xl sm:text-4xl font-bold mb-2 text-[#0066FF]">&lt;2 sec</div>
-            <div className="text-gray-300 font-medium text-sm sm:text-base">Response Time</div>
-            <div className="text-xs sm:text-sm text-gray-500 mt-1">Faster than any human</div>
+          <div className="bg-[#151922] shadow-premium-lg rounded-2xl p-8 sm:p-10 hover:shadow-glow-blue transition-all duration-300 group">
+            <div className="text-4xl sm:text-5xl font-bold mb-3 bg-gradient-to-br from-blue-400 to-cyan-400 bg-clip-text text-transparent">&lt;2 sec</div>
+            <div className="text-white font-semibold text-sm sm:text-base">Response Time</div>
+            <div className="text-xs sm:text-sm text-gray-400 mt-2">Faster than any human</div>
           </div>
-          <div className="bg-[#1E293B] border border-gray-800 rounded-xl p-6 sm:p-8">
-            <div className="text-3xl sm:text-4xl font-bold mb-2 text-[#0066FF]">24/7</div>
-            <div className="text-gray-300 font-medium text-sm sm:text-base">Always Available</div>
-            <div className="text-xs sm:text-sm text-gray-500 mt-1">Nights, weekends, holidays</div>
+          <div className="bg-[#151922] shadow-premium-lg rounded-2xl p-8 sm:p-10 hover:shadow-glow-blue transition-all duration-300 group">
+            <div className="text-4xl sm:text-5xl font-bold mb-3 bg-gradient-to-br from-blue-400 to-cyan-400 bg-clip-text text-transparent">24/7</div>
+            <div className="text-white font-semibold text-sm sm:text-base">Always Available</div>
+            <div className="text-xs sm:text-sm text-gray-400 mt-2">Nights, weekends, holidays</div>
           </div>
         </div>
       </section>
 
       {/* Features Grid */}
-      <section className="px-4 sm:px-6 py-16 sm:py-24 bg-[#0F172A]">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-center px-2">
-            Everything You Need to <span className="text-[#0066FF]">Capture Every Lead</span>
-          </h2>
-          <p className="text-gray-400 text-center mb-12 sm:mb-16 text-base sm:text-lg px-4">Built specifically for HVAC businesses</p>
+      <section className="px-4 sm:px-6 py-20 sm:py-32 bg-[#0A0E14] relative overflow-hidden">
+        {/* Gradient mesh */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none"></div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="max-w-6xl mx-auto relative z-10">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 text-center px-2">
+            Everything You Need to <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Capture Every Lead</span>
+          </h2>
+          <p className="text-gray-400 text-center mb-16 sm:mb-20 text-base sm:text-lg px-4 max-w-2xl mx-auto">Built specifically for HVAC businesses</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {/* Feature 1 */}
-            <div className="bg-[#1E293B] border border-gray-800 rounded-xl p-8 hover:border-[#0066FF] transition">
-              <div className="bg-[#0066FF]/10 w-14 h-14 rounded-lg flex items-center justify-center mb-6">
-                <Clock className="w-7 h-7 text-[#0066FF]" />
+            <div className="bg-[#151922] shadow-premium rounded-2xl p-8 hover:shadow-premium-lg hover:-translate-y-1 transition-all duration-300 group">
+              <div className="bg-gradient-to-br from-blue-500/20 to-cyan-500/20 w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <Clock className="w-7 h-7 text-blue-400" />
               </div>
-              <h3 className="text-xl font-bold mb-3">24/7 Availability</h3>
-              <p className="text-gray-400">Never miss emergency calls at 2 AM. Your AI receptionist works around the clock, even on holidays.</p>
+              <h3 className="text-xl font-bold mb-3 text-white">24/7 Availability</h3>
+              <p className="text-gray-400 leading-relaxed">Never miss emergency calls at 2 AM. Your AI receptionist works around the clock, even on holidays.</p>
             </div>
 
             {/* Feature 2 */}
-            <div className="bg-[#1E293B] border border-gray-800 rounded-xl p-8 hover:border-[#0066FF] transition">
-              <div className="bg-[#0066FF]/10 w-14 h-14 rounded-lg flex items-center justify-center mb-6">
-                <Calendar className="w-7 h-7 text-[#0066FF]" />
+            <div className="bg-[#151922] shadow-premium rounded-2xl p-8 hover:shadow-premium-lg hover:-translate-y-1 transition-all duration-300 group">
+              <div className="bg-gradient-to-br from-blue-500/20 to-cyan-500/20 w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <Calendar className="w-7 h-7 text-blue-400" />
               </div>
-              <h3 className="text-xl font-bold mb-3">Instant Booking</h3>
-              <p className="text-gray-400">Books appointments directly into your calendar while you're out on jobs. No more phone tag.</p>
+              <h3 className="text-xl font-bold mb-3 text-white">Instant Booking</h3>
+              <p className="text-gray-400 leading-relaxed">Books appointments directly into your calendar while you're out on jobs. No more phone tag.</p>
             </div>
 
             {/* Feature 3 */}
-            <div className="bg-[#1E293B] border border-gray-800 rounded-xl p-8 hover:border-[#0066FF] transition">
-              <div className="bg-[#0066FF]/10 w-14 h-14 rounded-lg flex items-center justify-center mb-6">
-                <Zap className="w-7 h-7 text-[#0066FF]" />
+            <div className="bg-[#151922] shadow-premium rounded-2xl p-8 hover:shadow-premium-lg hover:-translate-y-1 transition-all duration-300 group">
+              <div className="bg-gradient-to-br from-blue-500/20 to-cyan-500/20 w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <Zap className="w-7 h-7 text-blue-400" />
               </div>
-              <h3 className="text-xl font-bold mb-3">Smart Routing</h3>
-              <p className="text-gray-400">Urgent calls get escalated immediately. Routine questions handled automatically. You stay focused.</p>
+              <h3 className="text-xl font-bold mb-3 text-white">Smart Routing</h3>
+              <p className="text-gray-400 leading-relaxed">Urgent calls get escalated immediately. Routine questions handled automatically. You stay focused.</p>
             </div>
 
             {/* Feature 4 */}
-            <div className="bg-[#1E293B] border border-gray-800 rounded-xl p-8 hover:border-[#0066FF] transition">
-              <div className="bg-[#0066FF]/10 w-14 h-14 rounded-lg flex items-center justify-center mb-6">
-                <Shield className="w-7 h-7 text-[#0066FF]" />
+            <div className="bg-[#151922] shadow-premium rounded-2xl p-8 hover:shadow-premium-lg hover:-translate-y-1 transition-all duration-300 group">
+              <div className="bg-gradient-to-br from-blue-500/20 to-cyan-500/20 w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <Shield className="w-7 h-7 text-blue-400" />
               </div>
-              <h3 className="text-xl font-bold mb-3">Lead Capture</h3>
-              <p className="text-gray-400">Every caller's info captured and organized. Names, addresses, issues—all logged automatically.</p>
+              <h3 className="text-xl font-bold mb-3 text-white">Lead Capture</h3>
+              <p className="text-gray-400 leading-relaxed">Every caller's info captured and organized. Names, addresses, issues—all logged automatically.</p>
             </div>
 
             {/* Feature 5 */}
-            <div className="bg-[#1E293B] border border-gray-800 rounded-xl p-8 hover:border-[#0066FF] transition">
-              <div className="bg-[#0066FF]/10 w-14 h-14 rounded-lg flex items-center justify-center mb-6">
-                <Phone className="w-7 h-7 text-[#0066FF]" />
+            <div className="bg-[#151922] shadow-premium rounded-2xl p-8 hover:shadow-premium-lg hover:-translate-y-1 transition-all duration-300 group">
+              <div className="bg-gradient-to-br from-blue-500/20 to-cyan-500/20 w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <Phone className="w-7 h-7 text-blue-400" />
               </div>
-              <h3 className="text-xl font-bold mb-3">Keep Your Number</h3>
-              <p className="text-gray-400">Use your existing phone number. Simple call forwarding. Setup takes 5 minutes, not 5 days.</p>
+              <h3 className="text-xl font-bold mb-3 text-white">Keep Your Number</h3>
+              <p className="text-gray-400 leading-relaxed">Use your existing phone number. Simple call forwarding. Setup takes 5 minutes, not 5 days.</p>
             </div>
 
             {/* Feature 6 */}
-            <div className="bg-[#1E293B] border border-gray-800 rounded-xl p-8 hover:border-[#0066FF] transition">
-              <div className="bg-[#0066FF]/10 w-14 h-14 rounded-lg flex items-center justify-center mb-6">
-                <TrendingUp className="w-7 h-7 text-[#0066FF]" />
+            <div className="bg-[#151922] shadow-premium rounded-2xl p-8 hover:shadow-premium-lg hover:-translate-y-1 transition-all duration-300 group">
+              <div className="bg-gradient-to-br from-blue-500/20 to-cyan-500/20 w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <TrendingUp className="w-7 h-7 text-blue-400" />
               </div>
-              <h3 className="text-xl font-bold mb-3">Call Analytics</h3>
-              <p className="text-gray-400">See what customers are calling about. Track peak times. Make data-driven decisions.</p>
+              <h3 className="text-xl font-bold mb-3 text-white">Call Analytics</h3>
+              <p className="text-gray-400 leading-relaxed">See what customers are calling about. Track peak times. Make data-driven decisions.</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* How It Works */}
-      <section className="px-4 sm:px-6 py-16 sm:py-24 bg-[#1A1F2E]">
+      <section className="px-4 sm:px-6 py-16 sm:py-24 bg-[#0A0E14]">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 text-center px-2">
             Setup in <span className="text-[#0066FF]">5 Minutes</span>
@@ -146,7 +154,7 @@ function App() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
             {/* Step 1 */}
             <div className="text-center px-4">
-              <div className="bg-[#0066FF] w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center text-2xl sm:text-3xl font-bold mx-auto mb-4 sm:mb-6">
+              <div className="bg-gradient-to-br from-blue-600 to-cyan-500 w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center text-2xl sm:text-3xl font-bold mx-auto mb-4 sm:mb-6 shadow-glow-blue">
                 1
               </div>
               <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">Forward Your Calls</h3>
@@ -157,7 +165,7 @@ function App() {
 
             {/* Step 2 */}
             <div className="text-center px-4">
-              <div className="bg-[#0066FF] w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center text-2xl sm:text-3xl font-bold mx-auto mb-4 sm:mb-6">
+              <div className="bg-gradient-to-br from-blue-600 to-cyan-500 w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center text-2xl sm:text-3xl font-bold mx-auto mb-4 sm:mb-6 shadow-glow-blue">
                 2
               </div>
               <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">Answer A Few Questions</h3>
@@ -168,7 +176,7 @@ function App() {
 
             {/* Step 3 */}
             <div className="text-center px-4">
-              <div className="bg-[#0066FF] w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center text-2xl sm:text-3xl font-bold mx-auto mb-4 sm:mb-6">
+              <div className="bg-gradient-to-br from-blue-600 to-cyan-500 w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center text-2xl sm:text-3xl font-bold mx-auto mb-4 sm:mb-6 shadow-glow-blue">
                 3
               </div>
               <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">Start Capturing Leads</h3>
@@ -189,13 +197,13 @@ function App() {
       </section>
 
       {/* Live Demo Section */}
-      <section className="px-4 sm:px-6 py-16 sm:py-24 bg-[#0F172A]">
+      <section className="px-4 sm:px-6 py-16 sm:py-24 bg-[#0A0E14]">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-10 sm:mb-12 px-2">
             Hear ClientFlow in Action
           </h2>
 
-          <div className="bg-[#0F172A] border-2 border-[#0066FF] rounded-2xl p-8 sm:p-12 max-w-2xl mx-auto">
+          <div className="glass-strong shadow-glow-blue rounded-3xl p-8 sm:p-12 max-w-2xl mx-auto">
             <Phone className="w-10 h-10 sm:w-12 sm:h-12 text-[#0066FF] mx-auto mb-4 sm:mb-6" />
             <a
               href="tel:5551234822"
@@ -206,7 +214,7 @@ function App() {
             <p className="text-sm sm:text-base text-gray-400 mb-6 sm:mb-8">Call now to talk to our AI receptionist</p>
             <a
               href="tel:5551234822"
-              className="bg-[#0066FF] hover:bg-[#0052CC] text-white px-8 py-4 rounded-lg text-sm sm:text-base font-semibold transition inline-flex items-center gap-2 w-full sm:w-auto justify-center"
+              className="bg-[#0066FF] hover:bg-[#0052CC] text-white px-8 py-4 rounded-lg text-sm sm:text-base font-semibold transition inline-flex items-center gap-2 w-full sm:w-auto justify-center shadow-lg"
             >
               <Phone className="w-5 h-5" />
               Call Now
@@ -216,7 +224,7 @@ function App() {
       </section>
 
       {/* Problem Section */}
-      <section className="px-4 sm:px-6 py-16 sm:py-24 bg-[#0F172A]">
+      <section className="px-4 sm:px-6 py-16 sm:py-24 bg-[#0A0E14]">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 text-center px-2">
             You're Hemorrhaging Money <span className="text-red-400">Every Single Day</span>
@@ -227,7 +235,7 @@ function App() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-8 sm:mb-12">
             {/* Lost Call Scenarios */}
-            <div className="bg-red-900/10 border-2 border-red-800/50 rounded-xl p-6 sm:p-8">
+            <div className="bg-red-900/10 shadow-premium rounded-2xl p-6 sm:p-8 border border-red-800/30">
               <div className="flex items-start gap-3 sm:gap-4 mb-4 sm:mb-6">
                 <div className="bg-red-500/20 p-2 sm:p-3 rounded-lg flex-shrink-0">
                   <XCircle className="w-6 h-6 sm:w-8 sm:h-8 text-red-400" />
@@ -242,7 +250,7 @@ function App() {
               </div>
             </div>
 
-            <div className="bg-red-900/10 border-2 border-red-800/50 rounded-xl p-6 sm:p-8">
+            <div className="bg-red-900/10 shadow-premium rounded-2xl p-6 sm:p-8 border border-red-800/30">
               <div className="flex items-start gap-3 sm:gap-4 mb-4 sm:mb-6">
                 <div className="bg-red-500/20 p-2 sm:p-3 rounded-lg flex-shrink-0">
                   <DollarSign className="w-6 h-6 sm:w-8 sm:h-8 text-red-400" />
@@ -258,7 +266,7 @@ function App() {
             </div>
           </div>
 
-          <div className="bg-[#1E293B] border-2 border-gray-700 rounded-xl p-6 sm:p-8 max-w-3xl mx-auto text-center">
+          <div className="bg-[#151922] shadow-premium-lg rounded-2xl p-6 sm:p-8 max-w-3xl mx-auto text-center border border-gray-800/50">
             <p className="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed">
               Meanwhile, you're paying a receptionist <span className="text-white font-bold">$40,000-$50,000/year</span> who only works
               <span className="text-red-400 font-bold"> 8 hours a day, 5 days a week</span>...
@@ -269,16 +277,19 @@ function App() {
       </section>
 
       {/* ROI Calculator */}
-      <section className="px-4 sm:px-6 py-16 sm:py-24 bg-[#1A1F2E]">
-        <div className="max-w-4xl mx-auto">
+      <section className="px-4 sm:px-6 py-20 sm:py-32 bg-[#0A0E14] relative overflow-hidden">
+        {/* Gradient mesh */}
+        <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div className="max-w-4xl mx-auto relative z-10">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 text-center px-2">
-            Calculate Your <span className="text-[#0066FF]">Lost Revenue</span>
+            Calculate Your <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Lost Revenue</span>
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-gray-400 text-center mb-10 sm:mb-12 px-4">
+          <p className="text-base sm:text-lg md:text-xl text-gray-400 text-center mb-12 sm:mb-16 px-4">
             See exactly how much money you're leaving on the table
           </p>
 
-          <div className="bg-[#0F172A] border-2 border-[#0066FF] rounded-2xl p-6 sm:p-8 md:p-12">
+          <div className="glass-strong shadow-glow-blue rounded-3xl p-8 sm:p-10 md:p-14">
             {/* Calculator Inputs */}
             <div className="space-y-6 sm:space-y-8 mb-10 sm:mb-12">
               {/* Slider 1: Average Service Ticket */}
@@ -380,16 +391,19 @@ function App() {
       </section>
 
       {/* Pricing Section */}
-      <section className="px-4 sm:px-6 py-16 sm:py-24 bg-[#0F172A]">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-center px-2">Choose Your Plan</h2>
-          <p className="text-sm sm:text-base text-gray-400 text-center mb-12 sm:mb-16 px-4">Based on your monthly call volume</p>
+      <section className="px-4 sm:px-6 py-20 sm:py-32 bg-[#0A0E14] relative overflow-hidden">
+        {/* Gradient mesh */}
+        <div className="absolute top-1/2 right-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none"></div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-start">
+        <div className="max-w-6xl mx-auto relative z-10">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 text-center px-2">Choose Your Plan</h2>
+          <p className="text-sm sm:text-base text-gray-400 text-center mb-16 sm:mb-20 px-4">Based on your monthly call volume</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 items-start">
             {/* Starter */}
-            <div className="bg-[#1E293B] border border-gray-800 rounded-xl p-8 h-full flex flex-col">
-              <h3 className="text-2xl font-bold mb-4">STARTER</h3>
-              <div className="text-5xl font-bold mb-2">$297</div>
+            <div className="bg-[#151922] shadow-premium rounded-2xl p-8 h-full flex flex-col hover:shadow-premium-lg transition-all duration-300">
+              <h3 className="text-2xl font-bold mb-4 text-white">STARTER</h3>
+              <div className="text-5xl font-bold mb-2 bg-gradient-to-br from-blue-400 to-cyan-400 bg-clip-text text-transparent">$297</div>
               <div className="text-gray-400 mb-6">per month</div>
 
               <div className="mb-6 pb-6 border-b border-gray-800">
@@ -422,13 +436,17 @@ function App() {
             </div>
 
             {/* Professional - Highlighted */}
-            <div className="bg-[#1E293B] border-2 border-[#0066FF] rounded-xl p-8 h-full flex flex-col relative pt-12 shadow-lg shadow-[#0066FF]/20">
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#0066FF] px-6 py-2 rounded-full text-sm font-bold whitespace-nowrap">
-                MOST POPULAR
-              </div>
+            <div className="relative h-full">
+              {/* Animated gradient glow */}
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 rounded-2xl blur opacity-75 group-hover:opacity-100 animate-pulse"></div>
 
-              <h3 className="text-2xl font-bold mb-4">PROFESSIONAL</h3>
-              <div className="text-5xl font-bold mb-2 text-[#0066FF]">$597</div>
+              <div className="relative bg-[#151922] rounded-2xl p-8 h-full flex flex-col pt-14 shadow-glow-blue">
+                <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-blue-600 to-cyan-500 px-8 py-3 rounded-full text-sm font-bold whitespace-nowrap shadow-lg">
+                  MOST POPULAR
+                </div>
+
+                <h3 className="text-2xl font-bold mb-4 text-white">PROFESSIONAL</h3>
+                <div className="text-6xl font-bold mb-2 bg-gradient-to-br from-blue-400 to-cyan-400 bg-clip-text text-transparent">$597</div>
               <div className="text-gray-400 mb-6">per month</div>
 
               <div className="mb-6 pb-6 border-b border-gray-700">
@@ -454,16 +472,17 @@ function App() {
                 ))}
               </ul>
 
-              <button className="w-full bg-[#0066FF] hover:bg-[#0052CC] text-white px-6 py-4 rounded-lg font-bold transition shadow-lg">
-                Start Free Trial
-              </button>
-              <p className="text-xs text-gray-500 text-center mt-3">$19.90/day</p>
+                <button className="w-full bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white px-6 py-4 rounded-lg font-bold transition shadow-lg">
+                  Start Free Trial
+                </button>
+                <p className="text-xs text-gray-500 text-center mt-3">$19.90/day</p>
+              </div>
             </div>
 
             {/* Premium */}
-            <div className="bg-[#1E293B] border border-gray-800 rounded-xl p-8 h-full flex flex-col">
-              <h3 className="text-2xl font-bold mb-4">PREMIUM</h3>
-              <div className="text-5xl font-bold mb-2">$1,497</div>
+            <div className="bg-[#151922] shadow-premium rounded-2xl p-8 h-full flex flex-col hover:shadow-premium-lg transition-all duration-300">
+              <h3 className="text-2xl font-bold mb-4 text-white">PREMIUM</h3>
+              <div className="text-5xl font-bold mb-2 bg-gradient-to-br from-blue-400 to-cyan-400 bg-clip-text text-transparent">$1,497</div>
               <div className="text-gray-400 mb-6">per month</div>
 
               <div className="mb-6 pb-6 border-b border-gray-800">
@@ -489,32 +508,32 @@ function App() {
                 ))}
               </ul>
 
-              <button className="w-full bg-transparent border-2 border-[#0066FF] text-[#0066FF] hover:bg-[#0066FF] hover:text-white px-6 py-4 rounded-lg font-bold transition">
+              <button className="w-full bg-transparent border-2 border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white px-6 py-4 rounded-lg font-bold transition">
                 Contact Sales
               </button>
               <p className="text-xs text-gray-500 text-center mt-3">$49.90/day</p>
             </div>
           </div>
 
-          <p className="text-center text-gray-400 mt-12">
+          <p className="text-center text-gray-400 mt-16 text-sm sm:text-base">
             All plans include 14-day free trial • No setup fees • No contracts • Cancel anytime
           </p>
         </div>
       </section>
 
       {/* FAQ Section */}
-      <section className="px-4 sm:px-6 py-16 sm:py-24 bg-[#0F172A]">
+      <section className="px-4 sm:px-6 py-20 sm:py-32 bg-[#0A0E14]">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 text-center px-2">
             Common Questions
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-gray-400 text-center mb-12 sm:mb-16 px-4">
+          <p className="text-base sm:text-lg md:text-xl text-gray-400 text-center mb-16 sm:mb-20 px-4">
             Everything you need to know about ClientFlow
           </p>
 
-          <div className="space-y-4 sm:space-y-6">
+          <div className="space-y-5 sm:space-y-6">
             {/* FAQ 1 */}
-            <div className="bg-[#1E293B] border border-gray-800 rounded-xl p-6 sm:p-8">
+            <div className="bg-[#151922] shadow-premium rounded-2xl p-6 sm:p-8 hover:shadow-premium-lg transition-all duration-300">
               <h3 className="text-lg sm:text-xl font-bold mb-3 text-white">How long does setup actually take?</h3>
               <p className="text-sm sm:text-base text-gray-400 leading-relaxed">
                 Seriously, 5 minutes. You forward your calls, answer a few questions about your business (services, pricing, hours), and you're live. Most HVAC businesses are fully operational within one phone call to our team.
@@ -522,7 +541,7 @@ function App() {
             </div>
 
             {/* FAQ 2 */}
-            <div className="bg-[#1E293B] border border-gray-800 rounded-xl p-6 sm:p-8">
+            <div className="bg-[#151922] shadow-premium rounded-2xl hover:shadow-premium-lg transition-all duration-300 p-6 sm:p-8">
               <h3 className="text-lg sm:text-xl font-bold mb-3 text-white">Can I keep my current phone number?</h3>
               <p className="text-sm sm:text-base text-gray-400 leading-relaxed">
                 Yes. You keep your existing number—the one on your truck, website, and Google listing. We just use simple call forwarding. Your customers never know the difference.
@@ -530,7 +549,7 @@ function App() {
             </div>
 
             {/* FAQ 3 */}
-            <div className="bg-[#1E293B] border border-gray-800 rounded-xl p-6 sm:p-8">
+            <div className="bg-[#151922] shadow-premium rounded-2xl hover:shadow-premium-lg transition-all duration-300 p-6 sm:p-8">
               <h3 className="text-lg sm:text-xl font-bold mb-3 text-white">What happens if the AI can't handle a call?</h3>
               <p className="text-sm sm:text-base text-gray-400 leading-relaxed">
                 The AI transfers complex or urgent calls directly to you or your team. You set the rules—emergency calls, specific customer requests, or technical questions can all be routed to a real person instantly.
@@ -538,7 +557,7 @@ function App() {
             </div>
 
             {/* FAQ 4 */}
-            <div className="bg-[#1E293B] border border-gray-800 rounded-xl p-6 sm:p-8">
+            <div className="bg-[#151922] shadow-premium rounded-2xl hover:shadow-premium-lg transition-all duration-300 p-6 sm:p-8">
               <h3 className="text-lg sm:text-xl font-bold mb-3 text-white">How is this different from a traditional receptionist?</h3>
               <p className="text-sm sm:text-base text-gray-400 leading-relaxed">
                 A receptionist costs $40-50k/year, works 8 hours a day, needs breaks, gets sick, and takes vacation. ClientFlow costs $297-1,497/month, works 24/7/365, never takes a break, and answers in under 2 seconds. Every single time.
@@ -546,7 +565,7 @@ function App() {
             </div>
 
             {/* FAQ 5 */}
-            <div className="bg-[#1E293B] border border-gray-800 rounded-xl p-6 sm:p-8">
+            <div className="bg-[#151922] shadow-premium rounded-2xl hover:shadow-premium-lg transition-all duration-300 p-6 sm:p-8">
               <h3 className="text-lg sm:text-xl font-bold mb-3 text-white">What if I need to cancel?</h3>
               <p className="text-sm sm:text-base text-gray-400 leading-relaxed">
                 Cancel anytime. No contracts, no cancellation fees, no questions asked. You can turn off call forwarding in 30 seconds and you're done. We only keep customers who see real value.
@@ -554,7 +573,7 @@ function App() {
             </div>
 
             {/* FAQ 6 */}
-            <div className="bg-[#1E293B] border border-gray-800 rounded-xl p-6 sm:p-8">
+            <div className="bg-[#151922] shadow-premium rounded-2xl hover:shadow-premium-lg transition-all duration-300 p-6 sm:p-8">
               <h3 className="text-lg sm:text-xl font-bold mb-3 text-white">Does it integrate with my calendar and CRM?</h3>
               <p className="text-sm sm:text-base text-gray-400 leading-relaxed">
                 Yes. We integrate with Google Calendar, Outlook, ServiceTitan, Housecall Pro, and most major HVAC software. Appointments book directly into your existing system—no double data entry.
