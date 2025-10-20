@@ -1,3 +1,4 @@
+/// <reference path="./custom-elements.d.ts" />
 import { Phone, ArrowRight, Zap, Clock, Calendar, Shield, DollarSign, TrendingUp, CheckCircle, XCircle } from 'lucide-react';
 import { useState } from 'react';
 
@@ -197,28 +198,68 @@ function App() {
       </section>
 
       {/* Live Demo Section */}
-      <section className="px-4 sm:px-6 py-16 sm:py-24 bg-[#0A0E14]">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-10 sm:mb-12 px-2">
-            Hear ClientFlow in Action
-          </h2>
+      <section className="px-4 sm:px-6 py-20 sm:py-32 bg-[#0A0E14] relative overflow-hidden">
+        {/* Gradient mesh */}
+        <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl pointer-events-none"></div>
 
-          <div className="glass-strong shadow-glow-blue rounded-3xl p-8 sm:p-12 max-w-2xl mx-auto">
-            <Phone className="w-10 h-10 sm:w-12 sm:h-12 text-[#0066FF] mx-auto mb-4 sm:mb-6" />
-            <a
-              href="tel:5551234822"
-              className="text-3xl sm:text-4xl md:text-5xl font-bold hover:text-[#0066FF] transition block mb-3 sm:mb-4"
-            >
-              (555) 123-HVAC
-            </a>
-            <p className="text-sm sm:text-base text-gray-400 mb-6 sm:mb-8">Call now to talk to our AI receptionist</p>
-            <a
-              href="tel:5551234822"
-              className="bg-[#0066FF] hover:bg-[#0052CC] text-white px-8 py-4 rounded-lg text-sm sm:text-base font-semibold transition inline-flex items-center gap-2 w-full sm:w-auto justify-center shadow-lg"
-            >
-              <Phone className="w-5 h-5" />
-              Call Now
-            </a>
+        <div className="max-w-5xl mx-auto relative z-10">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 text-center px-2">
+            Try Our <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">AI Receptionist</span> Live
+          </h2>
+          <p className="text-base sm:text-lg text-gray-400 text-center mb-12 sm:mb-16 px-4">
+            Experience how ClientFlow handles customer calls—right here, right now
+          </p>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-start">
+            {/* Interactive Widget Demo */}
+            <div className="glass-strong shadow-glow-blue rounded-3xl p-8 sm:p-10">
+              <div className="flex items-center justify-center gap-3 mb-6">
+                <Zap className="w-6 h-6 text-[#0066FF]" />
+                <h3 className="text-xl sm:text-2xl font-bold text-white">Interactive Demo</h3>
+              </div>
+              <p className="text-sm sm:text-base text-gray-400 mb-6 text-center">
+                Chat with our AI receptionist directly in your browser. Ask questions, book appointments, get pricing.
+              </p>
+
+              {/* ElevenLabs Widget */}
+              <div className="min-h-[400px] flex items-center justify-center">
+                {/* @ts-expect-error - Custom element from ElevenLabs */}
+                <elevenlabs-convai agent-id="YOUR_AGENT_ID"></elevenlabs-convai>
+              </div>
+            </div>
+
+            {/* Phone Demo */}
+            <div className="glass-strong shadow-premium-lg rounded-3xl p-8 sm:p-10 flex flex-col justify-center">
+              <div className="flex items-center justify-center gap-3 mb-6">
+                <Phone className="w-6 h-6 text-[#0066FF]" />
+                <h3 className="text-xl sm:text-2xl font-bold text-white">Call Demo Line</h3>
+              </div>
+              <p className="text-sm sm:text-base text-gray-400 mb-8 text-center">
+                Prefer to hear it on your phone? Call our demo line to experience the AI in action.
+              </p>
+
+              <div className="text-center">
+                <a
+                  href="tel:5551234822"
+                  className="text-3xl sm:text-4xl font-bold hover:text-[#0066FF] transition block mb-6 bg-gradient-to-br from-blue-400 to-cyan-400 bg-clip-text text-transparent"
+                >
+                  (555) 123-HVAC
+                </a>
+                <a
+                  href="tel:5551234822"
+                  className="bg-[#0066FF] hover:bg-[#0052CC] text-white px-8 py-4 rounded-lg text-sm sm:text-base font-semibold transition inline-flex items-center gap-2 w-full sm:w-auto justify-center shadow-lg"
+                >
+                  <Phone className="w-5 h-5" />
+                  Call Now
+                </a>
+              </div>
+
+              <div className="mt-8 pt-8 border-t border-gray-700">
+                <p className="text-xs sm:text-sm text-gray-500 text-center leading-relaxed">
+                  Available 24/7 • Try asking about pricing, availability, or booking an appointment
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
