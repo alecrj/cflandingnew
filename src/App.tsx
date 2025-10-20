@@ -51,216 +51,205 @@ function App() {
       </nav>
 
       {/* Hero Section */}
-      <section id="demo" className="px-4 sm:px-6 pt-32 sm:pt-40 pb-24 sm:pb-32 relative overflow-hidden">
-        {/* Enhanced gradient mesh background */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-[-10%] left-[10%] w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute top-[20%] right-[10%] w-[500px] h-[500px] bg-cyan-500/8 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-[-10%] left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-purple-500/5 rounded-full blur-3xl"></div>
-        </div>
+      <section id="demo" className="px-4 sm:px-6 pt-40 sm:pt-48 pb-32 sm:pb-40 relative overflow-hidden">
+        {/* Minimal gradient accent */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-500/5 rounded-full blur-3xl pointer-events-none"></div>
 
-        {/* Noise texture overlay for depth */}
-        <div className="absolute inset-0 opacity-[0.015] pointer-events-none" style={{backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 400 400\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' /%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\' /%3E%3C/svg%3E")'}}></div>
-
-        <div className="max-w-6xl mx-auto relative z-10">
-          <div className="text-center mb-12 sm:mb-16">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-20 sm:mb-24">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 mb-8 sm:mb-10">
-              <div className="bg-gradient-to-r from-blue-500/10 to-cyan-500/10 backdrop-blur-xl border border-blue-500/20 rounded-full px-4 sm:px-5 py-2 sm:py-2.5 shadow-lg">
+            <div className="inline-flex items-center gap-2 mb-10 sm:mb-12">
+              <div className="bg-white/5 border border-white/10 rounded-full px-4 py-2">
                 <div className="flex items-center gap-2.5">
                   <div className="relative">
-                    <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                    <div className="absolute inset-0 w-2 h-2 bg-green-400 rounded-full animate-ping"></div>
+                    <div className="w-1.5 h-1.5 bg-green-400 rounded-full"></div>
+                    <div className="absolute inset-0 w-1.5 h-1.5 bg-green-400 rounded-full animate-ping"></div>
                   </div>
-                  <span className="text-xs sm:text-sm font-semibold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                    Live Demo • Talk to AI Now
+                  <span className="text-sm font-medium text-gray-300">
+                    Live Demo Available
                   </span>
                 </div>
               </div>
             </div>
 
             {/* Headline */}
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 sm:mb-8 leading-[1.1] tracking-tight max-w-5xl mx-auto">
+            <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold mb-8 sm:mb-10 leading-[0.95] tracking-tighter max-w-6xl mx-auto">
               Never Miss Another
               <br />
-              <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
+              <span className="text-blue-500">
                 Emergency Call
               </span>
             </h1>
 
-            <p className="text-xl sm:text-2xl md:text-3xl text-gray-400 mb-12 sm:mb-16 max-w-3xl mx-auto font-light leading-relaxed">
-              AI receptionist that answers in under 2 seconds,
-              <br className="hidden sm:block" />
-              books appointments, and captures every lead—24/7
+            <p className="text-xl sm:text-2xl md:text-3xl text-gray-400 mb-16 sm:mb-20 max-w-4xl mx-auto leading-relaxed">
+              AI receptionist answers in under 2 seconds, books appointments instantly, and captures every lead—24/7
             </p>
           </div>
 
-          {/* Voice Widget - Centered */}
-          <div className="relative max-w-xl mx-auto mb-16 sm:mb-20">
-            {/* Multi-layer glow effect */}
-            <div className="absolute -inset-12 bg-gradient-to-r from-blue-600/20 via-cyan-500/20 to-purple-600/20 rounded-full blur-3xl opacity-60"></div>
-            <div className="absolute -inset-6 bg-gradient-to-r from-blue-600/30 to-cyan-500/30 rounded-full blur-2xl"></div>
-
-            <div className="relative">
-              {/* Glass container */}
-              <div className="glass-strong rounded-3xl p-10 sm:p-14 border border-white/10 shadow-2xl">
-                <div className="flex flex-col items-center justify-center">
-                  {/* Title */}
-                  <div className="flex items-center gap-3 mb-8">
-                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500/20 to-cyan-500/20 border border-blue-500/30 flex items-center justify-center">
-                      <Phone className="w-5 h-5 text-blue-400" />
-                    </div>
-                    <h3 className="text-xl sm:text-2xl font-bold text-white">Talk to ClientFlow</h3>
-                  </div>
-
-                  <p className="text-base sm:text-lg text-gray-400 mb-10 text-center max-w-md">
-                    Click below and ask about pricing, availability, or schedule an appointment
-                  </p>
-
-                  {/* Widget - Properly centered */}
-                  <div className="w-full flex items-center justify-center mb-8">
-                    {/* @ts-expect-error - Custom element from ElevenLabs */}
-                    <elevenlabs-convai agent-id="agent_0901k81qxj1bemvrzmc72xa33r7w"></elevenlabs-convai>
-                  </div>
-
-                  <p className="text-sm text-gray-500 text-center">
-                    Same AI your customers will experience
-                  </p>
+          {/* Voice Widget - Cleaner */}
+          <div className="relative max-w-2xl mx-auto mb-20 sm:mb-24">
+            <div className="bg-white/[0.02] border border-white/10 rounded-3xl p-12 sm:p-16">
+              <div className="flex flex-col items-center">
+                <div className="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-6">
+                  <Phone className="w-6 h-6 text-blue-500" />
                 </div>
+
+                <h3 className="text-2xl sm:text-3xl font-bold mb-4">Try It Live</h3>
+                <p className="text-lg text-gray-400 mb-12 text-center max-w-lg">
+                  Ask about pricing, availability, or book an appointment
+                </p>
+
+                <div className="w-full flex items-center justify-center mb-8">
+                  {/* @ts-expect-error - Custom element from ElevenLabs */}
+                  <elevenlabs-convai agent-id="agent_0901k81qxj1bemvrzmc72xa33r7w"></elevenlabs-convai>
+                </div>
+
+                <p className="text-sm text-gray-500">
+                  Same AI your customers experience
+                </p>
               </div>
             </div>
           </div>
 
           {/* CTA */}
-          <div className="flex flex-col items-center gap-6 mb-12">
-            <button className="group relative bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white px-10 sm:px-14 py-5 sm:py-6 rounded-xl text-lg sm:text-xl font-bold transition-all duration-300 flex items-center justify-center gap-3 shadow-2xl shadow-blue-500/25 hover:shadow-blue-500/40 hover:scale-[1.02] w-full sm:w-auto">
+          <div className="flex flex-col items-center gap-8 mb-32">
+            <button className="group bg-blue-500 hover:bg-blue-600 text-white px-12 py-5 rounded-xl text-lg font-semibold transition-all flex items-center gap-3 w-full sm:w-auto">
               <span>Start Free 14-Day Trial</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-
-              {/* Shine effect */}
-              <div className="absolute inset-0 -top-[1px] rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-shimmer"></div>
             </button>
 
-            {/* Trust indicators */}
             <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500">
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-green-400/80" />
-                <span>Free 14-day trial</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-green-400/80" />
-                <span>No credit card required</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-green-400/80" />
-                <span>Setup in 5 minutes</span>
-              </div>
+              <span>Free 14-day trial</span>
+              <span>•</span>
+              <span>No credit card required</span>
+              <span>•</span>
+              <span>Setup in 5 minutes</span>
             </div>
           </div>
 
-          {/* Stats - More sophisticated */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mt-24 sm:mt-32 max-w-5xl mx-auto">
-            <div className="relative group">
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600/50 to-cyan-500/50 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
-              <div className="relative bg-[#0D1117] border border-gray-800/50 rounded-2xl p-10 sm:p-12 hover:border-gray-700/50 transition-all duration-300">
-                <div className="text-5xl sm:text-6xl font-bold mb-4 bg-gradient-to-br from-blue-400 to-cyan-400 bg-clip-text text-transparent">100%</div>
-                <div className="text-white font-semibold text-base sm:text-lg mb-2">Calls Answered</div>
-                <div className="text-sm text-gray-500">Never miss another opportunity</div>
-              </div>
+          {/* Stats - Clean & Minimal */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div className="text-center p-8">
+              <div className="text-6xl sm:text-7xl font-bold mb-3 text-blue-500">100%</div>
+              <div className="text-lg font-semibold text-white mb-2">Calls Answered</div>
+              <div className="text-gray-500">Never miss another lead</div>
             </div>
 
-            <div className="relative group">
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600/50 to-cyan-500/50 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
-              <div className="relative bg-[#0D1117] border border-gray-800/50 rounded-2xl p-10 sm:p-12 hover:border-gray-700/50 transition-all duration-300">
-                <div className="text-5xl sm:text-6xl font-bold mb-4 bg-gradient-to-br from-blue-400 to-cyan-400 bg-clip-text text-transparent">&lt;2s</div>
-                <div className="text-white font-semibold text-base sm:text-lg mb-2">Response Time</div>
-                <div className="text-sm text-gray-500">Faster than any human</div>
-              </div>
+            <div className="text-center p-8">
+              <div className="text-6xl sm:text-7xl font-bold mb-3 text-blue-500">&lt;2s</div>
+              <div className="text-lg font-semibold text-white mb-2">Response Time</div>
+              <div className="text-gray-500">Faster than any human</div>
             </div>
 
-            <div className="relative group">
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600/50 to-cyan-500/50 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
-              <div className="relative bg-[#0D1117] border border-gray-800/50 rounded-2xl p-10 sm:p-12 hover:border-gray-700/50 transition-all duration-300">
-                <div className="text-5xl sm:text-6xl font-bold mb-4 bg-gradient-to-br from-blue-400 to-cyan-400 bg-clip-text text-transparent">24/7</div>
-                <div className="text-white font-semibold text-base sm:text-lg mb-2">Always Available</div>
-                <div className="text-sm text-gray-500">Every night, weekend, holiday</div>
-              </div>
+            <div className="text-center p-8">
+              <div className="text-6xl sm:text-7xl font-bold mb-3 text-blue-500">24/7</div>
+              <div className="text-lg font-semibold text-white mb-2">Always Available</div>
+              <div className="text-gray-500">Nights, weekends, holidays</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Features Grid */}
-      <section id="features" className="px-4 sm:px-6 py-20 sm:py-32 bg-[#0A0E14] relative overflow-hidden">
-        {/* Gradient mesh */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none"></div>
+      {/* Bento Grid Features */}
+      <section id="features" className="px-4 sm:px-6 py-32 sm:py-40">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-20">
+            <h2 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 leading-tight tracking-tight">
+              Everything you need
+            </h2>
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+              Built specifically for HVAC businesses
+            </p>
+          </div>
 
-        <div className="max-w-6xl mx-auto relative z-10">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 text-center px-2">
-            Everything You Need to <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Capture Every Lead</span>
-          </h2>
-          <p className="text-gray-400 text-center mb-16 sm:mb-20 text-base sm:text-lg px-4 max-w-2xl mx-auto">Built specifically for HVAC businesses</p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {/* Feature 1 */}
-            <div className="bg-[#151922] shadow-premium rounded-2xl p-8 hover:shadow-premium-lg hover:-translate-y-1 transition-all duration-300 group">
-              <div className="bg-gradient-to-br from-blue-500/20 to-cyan-500/20 w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Clock className="w-7 h-7 text-blue-400" />
-              </div>
-              <h3 className="text-xl font-bold mb-3 text-white">24/7 Availability</h3>
-              <p className="text-gray-400 leading-relaxed">Never miss emergency calls at 2 AM. Your AI receptionist works around the clock, even on holidays.</p>
+          {/* Bento Grid Layout */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 sm:gap-6">
+            {/* Large feature - spans 2x2 */}
+            <div className="md:col-span-2 md:row-span-2 bg-white/[0.02] border border-white/10 rounded-3xl p-10 sm:p-12 hover:bg-white/[0.03] transition-colors">
+              <Clock className="w-12 h-12 text-blue-500 mb-6" />
+              <h3 className="text-3xl sm:text-4xl font-bold mb-4">24/7 Availability</h3>
+              <p className="text-lg text-gray-400 leading-relaxed">
+                Never miss emergency calls at 2 AM. Your AI receptionist works around the clock, even on holidays. No breaks, no sick days, no vacations.
+              </p>
             </div>
 
-            {/* Feature 2 */}
-            <div className="bg-[#151922] shadow-premium rounded-2xl p-8 hover:shadow-premium-lg hover:-translate-y-1 transition-all duration-300 group">
-              <div className="bg-gradient-to-br from-blue-500/20 to-cyan-500/20 w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Calendar className="w-7 h-7 text-blue-400" />
-              </div>
-              <h3 className="text-xl font-bold mb-3 text-white">Instant Booking</h3>
-              <p className="text-gray-400 leading-relaxed">Books appointments directly into your calendar while you're out on jobs. No more phone tag.</p>
+            {/* Small feature */}
+            <div className="md:col-span-2 bg-white/[0.02] border border-white/10 rounded-3xl p-8 sm:p-10 hover:bg-white/[0.03] transition-colors">
+              <Calendar className="w-10 h-10 text-blue-500 mb-4" />
+              <h3 className="text-2xl font-bold mb-3">Instant Booking</h3>
+              <p className="text-gray-400">
+                Books appointments directly into your calendar
+              </p>
             </div>
 
-            {/* Feature 3 */}
-            <div className="bg-[#151922] shadow-premium rounded-2xl p-8 hover:shadow-premium-lg hover:-translate-y-1 transition-all duration-300 group">
-              <div className="bg-gradient-to-br from-blue-500/20 to-cyan-500/20 w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Zap className="w-7 h-7 text-blue-400" />
-              </div>
-              <h3 className="text-xl font-bold mb-3 text-white">Smart Routing</h3>
-              <p className="text-gray-400 leading-relaxed">Urgent calls get escalated immediately. Routine questions handled automatically. You stay focused.</p>
+            {/* Small feature */}
+            <div className="md:col-span-2 bg-white/[0.02] border border-white/10 rounded-3xl p-8 sm:p-10 hover:bg-white/[0.03] transition-colors">
+              <Zap className="w-10 h-10 text-blue-500 mb-4" />
+              <h3 className="text-2xl font-bold mb-3">Smart Routing</h3>
+              <p className="text-gray-400">
+                Urgent calls escalated immediately to you
+              </p>
             </div>
 
-            {/* Feature 4 */}
-            <div className="bg-[#151922] shadow-premium rounded-2xl p-8 hover:shadow-premium-lg hover:-translate-y-1 transition-all duration-300 group">
-              <div className="bg-gradient-to-br from-blue-500/20 to-cyan-500/20 w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Shield className="w-7 h-7 text-blue-400" />
-              </div>
-              <h3 className="text-xl font-bold mb-3 text-white">Lead Capture</h3>
-              <p className="text-gray-400 leading-relaxed">Every caller's info captured and organized. Names, addresses, issues—all logged automatically.</p>
+            {/* Medium feature */}
+            <div className="md:col-span-2 bg-white/[0.02] border border-white/10 rounded-3xl p-8 sm:p-10 hover:bg-white/[0.03] transition-colors">
+              <Shield className="w-10 h-10 text-blue-500 mb-4" />
+              <h3 className="text-2xl font-bold mb-3">Complete Lead Capture</h3>
+              <p className="text-gray-400">
+                Every caller's information captured and organized automatically
+              </p>
             </div>
 
-            {/* Feature 5 */}
-            <div className="bg-[#151922] shadow-premium rounded-2xl p-8 hover:shadow-premium-lg hover:-translate-y-1 transition-all duration-300 group">
-              <div className="bg-gradient-to-br from-blue-500/20 to-cyan-500/20 w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Phone className="w-7 h-7 text-blue-400" />
-              </div>
-              <h3 className="text-xl font-bold mb-3 text-white">Keep Your Number</h3>
-              <p className="text-gray-400 leading-relaxed">Use your existing phone number. Simple call forwarding. Setup takes 5 minutes, not 5 days.</p>
+            {/* Medium feature */}
+            <div className="md:col-span-2 bg-white/[0.02] border border-white/10 rounded-3xl p-8 sm:p-10 hover:bg-white/[0.03] transition-colors">
+              <TrendingUp className="w-10 h-10 text-blue-500 mb-4" />
+              <h3 className="text-2xl font-bold mb-3">Call Analytics</h3>
+              <p className="text-gray-400">
+                Track peak times and make data-driven decisions
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* By the Numbers - Real Stats */}
+      <section className="px-4 sm:px-6 py-32 sm:py-40 border-y border-white/5">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-20">
+            <h2 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6">By the numbers</h2>
+            <p className="text-xl text-gray-400">Real impact, measurable results</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 sm:gap-16">
+            <div className="text-center">
+              <div className="text-5xl sm:text-6xl font-bold mb-3 text-blue-500">168</div>
+              <div className="text-gray-400 text-lg">Hours per week</div>
+              <div className="text-sm text-gray-600 mt-2">vs 40 for humans</div>
             </div>
 
-            {/* Feature 6 */}
-            <div className="bg-[#151922] shadow-premium rounded-2xl p-8 hover:shadow-premium-lg hover:-translate-y-1 transition-all duration-300 group">
-              <div className="bg-gradient-to-br from-blue-500/20 to-cyan-500/20 w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <TrendingUp className="w-7 h-7 text-blue-400" />
-              </div>
-              <h3 className="text-xl font-bold mb-3 text-white">Call Analytics</h3>
-              <p className="text-gray-400 leading-relaxed">See what customers are calling about. Track peak times. Make data-driven decisions.</p>
+            <div className="text-center">
+              <div className="text-5xl sm:text-6xl font-bold mb-3 text-blue-500">$597</div>
+              <div className="text-gray-400 text-lg">Monthly cost</div>
+              <div className="text-sm text-gray-600 mt-2">vs $3,750+ for staff</div>
+            </div>
+
+            <div className="text-center">
+              <div className="text-5xl sm:text-6xl font-bold mb-3 text-blue-500">2s</div>
+              <div className="text-gray-400 text-lg">Answer time</div>
+              <div className="text-sm text-gray-600 mt-2">Every single call</div>
+            </div>
+
+            <div className="text-center">
+              <div className="text-5xl sm:text-6xl font-bold mb-3 text-blue-500">0</div>
+              <div className="text-gray-400 text-lg">Training required</div>
+              <div className="text-sm text-gray-600 mt-2">Live in 5 minutes</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Cost Comparison Calculator */}
-      <section className="px-4 sm:px-6 py-20 sm:py-32 bg-gradient-to-b from-[#0A0E14] via-[#0D1117] to-[#0A0E14] relative overflow-hidden">
+      <section className="px-4 sm:px-6 py-32 sm:py-40">
         {/* Gradient accents */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
