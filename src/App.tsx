@@ -1,27 +1,14 @@
 /// <reference path="./custom-elements.d.ts" />
 import { Phone, X, Check, Star, ArrowRight, Clock, Users, TrendingUp, Shield, Zap, Calendar, MessageSquare } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 type ModalType = 'demo' | 'pricing' | 'how' | 'stats' | 'calculator' | null;
 
 function App() {
   const [receptionistSalary, setReceptionistSalary] = useState(45000);
   const [activeModal, setActiveModal] = useState<ModalType>(null);
-  const [showStickyCTA, setShowStickyCTA] = useState(false);
   const [showExitPopup, setShowExitPopup] = useState(false);
-  const { scrollY } = useScroll();
-  const heroY = useTransform(scrollY, [0, 500], [0, 150]);
-  const heroOpacity = useTransform(scrollY, [0, 300], [1, 0]);
-
-  // Show sticky CTA after scrolling past hero
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowStickyCTA(window.scrollY > 400);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   // Exit intent detection
   useEffect(() => {
