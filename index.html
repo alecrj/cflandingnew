@@ -84,21 +84,44 @@
             font-weight: 600;
             z-index: 2;
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-bottom: 10px;
         }
 
         .card:hover h2 {
             transform: translateY(-4px);
         }
 
-        /* Grid placements */
-        .home { grid-column: 1; grid-row: 1; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-        .roi { grid-column: 2 / 4; grid-row: 1; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
-        .demo { grid-column: 4; grid-row: 1; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
-        .pricing { grid-column: 4; grid-row: 2; background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+        .card-subtext {
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+            opacity: 0.85;
+            font-weight: 400;
+            z-index: 2;
+            line-height: 1.4;
+        }
+
+        .card-number {
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 15px;
+            z-index: 2;
+        }
+
+        .card-label {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            font-weight: 500;
+            opacity: 0.9;
+            z-index: 2;
+        }
+
+        /* Grid placements - Demo is the hero */
+        .demo { grid-column: 1 / 5; grid-row: 1; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
         .setup { grid-column: 1; grid-row: 2 / 4; background: linear-gradient(135deg, #30cfd0 0%, #330867 100%); }
         .stats { grid-column: 2; grid-row: 2; background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: #1a1a1a; }
         .logo-card { grid-column: 3; grid-row: 2; background: linear-gradient(135deg, #ff9a56 0%, #ff6a88 100%); }
-        .faq { grid-column: 2 / 4; grid-row: 3; background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); color: #1a1a1a; }
+        .roi { grid-column: 4; grid-row: 2; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .pricing { grid-column: 2; grid-row: 3; background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+        .faq { grid-column: 3; grid-row: 3; background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); color: #1a1a1a; }
         .cta { grid-column: 4; grid-row: 3; background: linear-gradient(135deg, #08aeea 0%, #2af598 100%); }
 
         /* Detail View */
@@ -637,12 +660,13 @@
 
         @media (max-width: 1024px) {
             .grid { grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr); }
-            .roi { grid-column: 2 / 4; grid-row: 1; }
-            .demo { grid-column: 3; grid-row: 2; }
-            .pricing { grid-column: 3; grid-row: 3; }
+            .demo { grid-column: 1 / 4; grid-row: 1; }
             .setup { grid-column: 1; grid-row: 2 / 4; }
-            .logo-card { grid-column: 2; grid-row: 2; }
-            .faq { grid-column: 2; grid-row: 3; }
+            .stats { grid-column: 2; grid-row: 2; }
+            .logo-card { grid-column: 3; grid-row: 2; }
+            .roi { grid-column: 2; grid-row: 3; }
+            .pricing { grid-column: 3; grid-row: 3; }
+            .faq { display: none; }
             .cta { display: none; }
             .container { padding: 10px; }
             .card { padding: 24px; }
@@ -651,27 +675,49 @@
         }
 
         @media (max-width: 768px) {
-            .grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(5, 1fr); }
-            .home { grid-column: 1; grid-row: 1; }
-            .roi { grid-column: 2; grid-row: 1; }
-            .demo { grid-column: 1; grid-row: 2; }
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(4, 1fr);
+                gap: 8px;
+                height: 100vh;
+            }
+            .demo { grid-column: 1 / 3; grid-row: 1; }
+            .stats { grid-column: 1; grid-row: 2; }
             .pricing { grid-column: 2; grid-row: 2; }
-            .setup { grid-column: 1; grid-row: 3 / 5; }
-            .stats { grid-column: 2; grid-row: 3; }
-            .logo-card { grid-column: 2; grid-row: 4; }
-            .faq { grid-column: 1 / 3; grid-row: 5; }
+            .roi { grid-column: 1; grid-row: 3; }
+            .setup { grid-column: 2; grid-row: 3; }
+            .logo-card {
+                grid-column: 1;
+                grid-row: 4;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .logo-text { font-size: 3rem; }
+            .faq { grid-column: 2; grid-row: 4; display: flex; }
             .cta { display: none; }
             .container { padding: 8px; }
-            .card { padding: 20px; }
+            .card { padding: 20px 16px; }
+            .card h2 { font-size: 1.2rem !important; }
+            .card-subtext { font-size: 0.75rem !important; margin-top: 6px; }
+            .card-number { font-size: 2.5rem !important; }
+            .card-label { font-size: 0.9rem !important; }
             .hero-section, .content-section { padding: 60px 20px 40px; }
             .nav-bar { padding: 15px 20px; }
             .comparison-wrapper, .pricing-wrapper { grid-template-columns: 1fr; }
             .calculator, .demo-wrapper { padding: 30px 20px; }
+            .grid-view { height: 100vh; overflow: hidden; }
         }
 
         @media (max-width: 480px) {
-            .card { padding: 14px; }
-            .card h2 { font-size: 1.3rem !important; }
+            .container { padding: 6px; }
+            .grid { gap: 6px; }
+            .card { padding: 16px 12px; }
+            .card h2 { font-size: 1rem !important; }
+            .card-subtext { font-size: 0.7rem !important; }
+            .card-number { font-size: 2rem !important; }
+            .card-label { font-size: 0.8rem !important; }
+            .logo-text { font-size: 2.5rem; }
             .stat-number { font-size: 3rem; }
             .pricing-price { font-size: 3rem; }
             .calc-big-number { font-size: 3rem; }
@@ -683,40 +729,46 @@
     <div id="gridView" class="grid-view">
         <div class="container">
             <div class="grid">
-                <div class="card home" onclick="showDetail('home')">
-                    <h2>Home</h2>
-                </div>
-
-                <div class="card roi" onclick="showDetail('roi')">
-                    <h2>ROI Calculator</h2>
-                </div>
-
                 <div class="card demo" onclick="showDetail('demo')">
-                    <h2>Live Demo</h2>
-                </div>
-
-                <div class="card pricing" onclick="showDetail('pricing')">
-                    <h2>Pricing</h2>
+                    <h2>Talk to Our AI Receptionist</h2>
+                    <p class="card-subtext">Click to test it right now. See how it handles your customers.</p>
                 </div>
 
                 <div class="card setup" onclick="showDetail('setup')">
-                    <h2>5-Min Setup</h2>
+                    <div class="card-number">5 Min</div>
+                    <div class="card-label">Setup Time</div>
+                    <p class="card-subtext" style="margin-top: 15px;">No tech skills needed</p>
                 </div>
 
                 <div class="card stats" onclick="showDetail('stats')">
-                    <h2>Performance</h2>
+                    <div class="card-number">100%</div>
+                    <div class="card-label">Calls Answered</div>
+                    <p class="card-subtext" style="margin-top: 15px;">Never miss a lead again</p>
                 </div>
 
-                <div class="card logo-card" onclick="showDetail('home')">
+                <div class="card logo-card" onclick="showDetail('demo')">
                     <div class="logo-text">N</div>
                 </div>
 
+                <div class="card roi" onclick="showDetail('roi')">
+                    <h2>Losing $50K+/Year?</h2>
+                    <p class="card-subtext">Calculate your actual lost revenue from missed calls</p>
+                </div>
+
+                <div class="card pricing" onclick="showDetail('pricing')">
+                    <div class="card-number">$297</div>
+                    <div class="card-label">per month</div>
+                    <p class="card-subtext" style="margin-top: 15px;">vs $50K/year for staff</p>
+                </div>
+
                 <div class="card faq" onclick="showDetail('faq')">
-                    <h2>FAQ</h2>
+                    <h2>Common Questions</h2>
+                    <p class="card-subtext">Everything you need to know</p>
                 </div>
 
                 <div class="card cta" onclick="showDetail('contact')">
-                    <h2>Get Started</h2>
+                    <h2>Start Today</h2>
+                    <p class="card-subtext">No contracts. Cancel anytime.</p>
                 </div>
             </div>
         </div>
@@ -801,7 +853,7 @@
 
                 <div class="comparison-card">
                     <h3>Nokturn AI</h3>
-                    <div class="comparison-price good">$7,164<span style="font-size: 1.5rem;">/year</span></div>
+                    <div class="comparison-price good">Starting at<br>$297<span style="font-size: 1.5rem;">/mo</span></div>
                     <ul class="feature-list good">
                         <li>24/7/365 coverage (100%)</li>
                         <li>Never sick, never takes breaks</li>
