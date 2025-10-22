@@ -1,15 +1,1235 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nokturn - AI Receptionist for HVAC Companies | Never Miss a Call</title>
-    <meta name="description" content="Stop losing $2,500 emergency calls to voicemail. Nokturn's AI receptionist answers in under 2 seconds, books appointments instantly, and captures every lead—24/7." />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nokturn - AI Receptionist for HVAC Companies</title>
     <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
-  </body>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        /* Grid View */
+        .grid-view {
+            padding: 0;
+            margin: 0;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+
+        .container {
+            height: 100vh;
+            width: 100vw;
+            padding: 12px;
+            box-sizing: border-box;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 12px;
+            width: 100%;
+            height: 100%;
+        }
+
+        .card {
+            border-radius: 20px;
+            padding: 32px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+        }
+
+        .card:hover::before {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .card h2 {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: 600;
+            z-index: 2;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card:hover h2 {
+            transform: translateY(-4px);
+        }
+
+        /* Grid placements */
+        .home { grid-column: 1; grid-row: 1; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .roi { grid-column: 2 / 4; grid-row: 1; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .demo { grid-column: 4; grid-row: 1; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .pricing { grid-column: 4; grid-row: 2; background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+        .setup { grid-column: 1; grid-row: 2 / 4; background: linear-gradient(135deg, #30cfd0 0%, #330867 100%); }
+        .stats { grid-column: 2; grid-row: 2; background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: #1a1a1a; }
+        .logo-card { grid-column: 3; grid-row: 2; background: linear-gradient(135deg, #ff9a56 0%, #ff6a88 100%); }
+        .faq { grid-column: 2 / 4; grid-row: 3; background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); color: #1a1a1a; }
+        .cta { grid-column: 4; grid-row: 3; background: linear-gradient(135deg, #08aeea 0%, #2af598 100%); }
+
+        /* Detail View */
+        .detail-view {
+            display: none;
+            background: #0a0a0a;
+            min-height: 100vh;
+        }
+
+        .detail-view.active {
+            display: block;
+        }
+
+        /* Navigation Bar */
+        .nav-bar {
+            position: sticky;
+            top: 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px 40px;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-btn {
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateX(-5px);
+        }
+
+        .logo-nav {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 120px 40px 80px;
+            text-align: center;
+        }
+
+        .hero-section h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-section .subtitle {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 800px;
+            margin: 0 auto 50px;
+            line-height: 1.6;
+        }
+
+        /* Content Section */
+        .content-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 60px;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.2);
+        }
+
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+        }
+
+        .stat-desc {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 15px;
+        }
+
+        /* Comparison Cards */
+        .comparison-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin: 60px 0;
+        }
+
+        .comparison-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 50px;
+            transition: all 0.4s ease;
+        }
+
+        .comparison-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .comparison-card h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .comparison-price {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin: 20px 0;
+        }
+
+        .comparison-price.good {
+            background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .comparison-price.bad {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .feature-list {
+            list-style: none;
+            margin: 30px 0;
+        }
+
+        .feature-list li {
+            padding: 15px 0;
+            padding-left: 35px;
+            position: relative;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-list.good li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #30cfd0;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .feature-list.bad li:before {
+            content: "✗";
+            position: absolute;
+            left: 0;
+            color: #f5576c;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 50px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+            margin: 20px 0;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.6);
+        }
+
+        /* Pricing Cards */
+        .pricing-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin: 60px 0;
+        }
+
+        .pricing-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 50px;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .pricing-card:hover {
+            transform: scale(1.05);
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 30px 80px rgba(102, 126, 234, 0.3);
+        }
+
+        .pricing-card.featured {
+            border: 3px solid #667eea;
+            transform: scale(1.05);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .pricing-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .pricing-price {
+            font-size: 4rem;
+            font-weight: 800;
+            margin: 20px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .pricing-price span {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 40px 0;
+        }
+
+        .pricing-features li {
+            padding: 15px 0;
+            padding-left: 35px;
+            position: relative;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .pricing-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #30cfd0;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        /* Steps */
+        .steps-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+            margin: 80px 0;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: 800;
+            margin: 0 auto 30px;
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.4);
+        }
+
+        .step h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .step p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+        }
+
+        /* Calculator */
+        .calculator {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            border-radius: 30px;
+            padding: 60px;
+            margin: 60px 0;
+        }
+
+        .calculator h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .slider-wrapper {
+            margin: 40px 0;
+        }
+
+        .slider {
+            width: 100%;
+            height: 10px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.5);
+        }
+
+        .slider::-moz-range-thumb {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.5);
+        }
+
+        .slider-value {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-top: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .calc-results {
+            background: linear-gradient(135deg, rgba(48, 207, 208, 0.2) 0%, rgba(51, 8, 103, 0.2) 100%);
+            border: 2px solid rgba(48, 207, 208, 0.4);
+            border-radius: 20px;
+            padding: 50px;
+            margin-top: 50px;
+        }
+
+        .calc-big-number {
+            font-size: 5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 20px 0;
+        }
+
+        /* FAQ */
+        .faq-wrapper {
+            max-width: 900px;
+            margin: 60px auto;
+        }
+
+        .faq-item {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 25px 0;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(102, 126, 234, 0.5);
+            transform: translateX(10px);
+        }
+
+        .faq-question {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .faq-answer {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Demo Section */
+        .demo-wrapper {
+            background: linear-gradient(135deg, rgba(79, 172, 254, 0.1) 0%, rgba(0, 242, 254, 0.1) 100%);
+            border: 2px solid rgba(79, 172, 254, 0.3);
+            border-radius: 30px;
+            padding: 100px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .demo-icon {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 40px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            box-shadow: 0 20px 60px rgba(79, 172, 254, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .logo-text {
+            font-size: 5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ff9a56 0%, #ff6a88 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ElevenLabs Widget Container */
+        .widget-container {
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (max-width: 1024px) {
+            .grid { grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr); }
+            .roi { grid-column: 2 / 4; grid-row: 1; }
+            .demo { grid-column: 3; grid-row: 2; }
+            .pricing { grid-column: 3; grid-row: 3; }
+            .setup { grid-column: 1; grid-row: 2 / 4; }
+            .logo-card { grid-column: 2; grid-row: 2; }
+            .faq { grid-column: 2; grid-row: 3; }
+            .cta { display: none; }
+            .container { padding: 10px; }
+            .card { padding: 24px; }
+            .hero-section, .content-section { padding: 80px 30px 60px; }
+            .calculator, .demo-wrapper { padding: 40px; }
+        }
+
+        @media (max-width: 768px) {
+            .grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(5, 1fr); }
+            .home { grid-column: 1; grid-row: 1; }
+            .roi { grid-column: 2; grid-row: 1; }
+            .demo { grid-column: 1; grid-row: 2; }
+            .pricing { grid-column: 2; grid-row: 2; }
+            .setup { grid-column: 1; grid-row: 3 / 5; }
+            .stats { grid-column: 2; grid-row: 3; }
+            .logo-card { grid-column: 2; grid-row: 4; }
+            .faq { grid-column: 1 / 3; grid-row: 5; }
+            .cta { display: none; }
+            .container { padding: 8px; }
+            .card { padding: 20px; }
+            .hero-section, .content-section { padding: 60px 20px 40px; }
+            .nav-bar { padding: 15px 20px; }
+            .comparison-wrapper, .pricing-wrapper { grid-template-columns: 1fr; }
+            .calculator, .demo-wrapper { padding: 30px 20px; }
+        }
+
+        @media (max-width: 480px) {
+            .card { padding: 14px; }
+            .card h2 { font-size: 1.3rem !important; }
+            .stat-number { font-size: 3rem; }
+            .pricing-price { font-size: 3rem; }
+            .calc-big-number { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Grid View -->
+    <div id="gridView" class="grid-view">
+        <div class="container">
+            <div class="grid">
+                <div class="card home" onclick="showDetail('home')">
+                    <h2>Home</h2>
+                </div>
+
+                <div class="card roi" onclick="showDetail('roi')">
+                    <h2>ROI Calculator</h2>
+                </div>
+
+                <div class="card demo" onclick="showDetail('demo')">
+                    <h2>Live Demo</h2>
+                </div>
+
+                <div class="card pricing" onclick="showDetail('pricing')">
+                    <h2>Pricing</h2>
+                </div>
+
+                <div class="card setup" onclick="showDetail('setup')">
+                    <h2>5-Min Setup</h2>
+                </div>
+
+                <div class="card stats" onclick="showDetail('stats')">
+                    <h2>Performance</h2>
+                </div>
+
+                <div class="card logo-card" onclick="showDetail('home')">
+                    <div class="logo-text">N</div>
+                </div>
+
+                <div class="card faq" onclick="showDetail('faq')">
+                    <h2>FAQ</h2>
+                </div>
+
+                <div class="card cta" onclick="showDetail('contact')">
+                    <h2>Get Started</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Demo Detail -->
+    <div id="demoDetail" class="detail-view">
+        <div class="nav-bar">
+            <button class="back-btn" onclick="showGrid()">
+                <span>←</span> Back
+            </button>
+            <div class="logo-nav">NOKTURN</div>
+        </div>
+
+        <div class="hero-section">
+            <h1>Experience Nokturn Live</h1>
+            <p class="subtitle">Talk with our AI receptionist right now. See how it handles your calls.</p>
+        </div>
+
+        <div class="content-section">
+            <div class="demo-wrapper">
+                <div class="widget-container">
+                    <elevenlabs-convai agent-id="agent_0901k81qxj1bemvrzmc72xa33r7w"></elevenlabs-convai>
+                </div>
+                <p style="font-size: 1.2rem; color: rgba(255, 255, 255, 0.6); margin-top: 30px;">Click to speak with our AI receptionist</p>
+            </div>
+
+            <div style="text-align: center; margin-top: 60px;">
+                <p style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.5);">Powered by ElevenLabs Conversational AI</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Continue with remaining detail pages... -->
+    <!-- Home Detail -->
+    <div id="homeDetail" class="detail-view">
+        <div class="nav-bar">
+            <button class="back-btn" onclick="showGrid()">
+                <span>←</span> Back
+            </button>
+            <div class="logo-nav">NOKTURN</div>
+        </div>
+
+        <div class="hero-section">
+            <h1>Answer every call.<br>Never lose a lead.</h1>
+            <p class="subtitle">AI receptionist for HVAC companies. Answers in under 2 seconds, books appointments, captures leads—24/7.</p>
+            <button class="cta-button" onclick="showDetail('demo')">Try Live Demo</button>
+        </div>
+
+        <div class="content-section">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Calls Answered</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">&lt;2s</div>
+                    <div class="stat-label">Response Time</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Always On</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title">You're paying 10x more for 24% coverage</h2>
+            <p class="section-subtitle">Receptionists work 40 hours/week. Nokturn works 168 hours—at a fraction of the cost.</p>
+
+            <div class="comparison-wrapper">
+                <div class="comparison-card">
+                    <h3>Traditional Receptionist</h3>
+                    <div class="comparison-price bad">$58,500<span style="font-size: 1.5rem;">/year</span></div>
+                    <ul class="feature-list bad">
+                        <li>Only 40 hours/week (24% coverage)</li>
+                        <li>Sick days, vacations, breaks</li>
+                        <li>Training & management time</li>
+                        <li>Misses 76% of calls (nights/weekends)</li>
+                    </ul>
+                </div>
+
+                <div class="comparison-card">
+                    <h3>Nokturn AI</h3>
+                    <div class="comparison-price good">$7,164<span style="font-size: 1.5rem;">/year</span></div>
+                    <ul class="feature-list good">
+                        <li>24/7/365 coverage (100%)</li>
+                        <li>Never sick, never takes breaks</li>
+                        <li>Zero setup or training time</li>
+                        <li>Answers in &lt;2 seconds</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin: 80px 0;">
+                <p style="font-size: 1.5rem; color: rgba(255, 255, 255, 0.6);">Your Annual Savings</p>
+                <div class="calc-big-number">$51,336</div>
+                <p style="font-size: 1.3rem; color: rgba(255, 255, 255, 0.7);">7.2x ROI while getting 4x more coverage</p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title">You're Hemorrhaging Money Every Day</h2>
+            <p class="section-subtitle">While you're out fixing AC units, high-value emergency calls are going straight to voicemail.</p>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">40%</div>
+                    <div class="stat-label">Calls After 5 PM</div>
+                    <div class="stat-desc">Emergency HVAC calls happen at night and weekends—exactly when you can't answer.</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">$2,500</div>
+                    <div class="stat-label">Avg Emergency Call</div>
+                    <div class="stat-desc">AC replacements, furnace repairs, emergency service—your most profitable jobs.</div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 60px;">
+                <button class="cta-button" onclick="showDetail('pricing')">View Pricing</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ROI Calculator Detail -->
+    <div id="roiDetail" class="detail-view">
+        <div class="nav-bar">
+            <button class="back-btn" onclick="showGrid()">
+                <span>←</span> Back
+            </button>
+            <div class="logo-nav">NOKTURN</div>
+        </div>
+
+        <div class="hero-section">
+            <h1>Calculate Your Lost Revenue</h1>
+            <p class="subtitle">See exactly how much money you're leaving on the table</p>
+        </div>
+
+        <div class="content-section">
+            <div class="calculator">
+                <h3>Average Service Ticket Value</h3>
+                <div class="slider-wrapper">
+                    <input type="range" min="500" max="5000" value="2500" step="100" class="slider" id="ticketValue">
+                    <div class="slider-value">$<span id="ticketDisplay">2,500</span></div>
+                </div>
+
+                <h3 style="margin-top: 50px;">Missed Calls Per Week</h3>
+                <div class="slider-wrapper">
+                    <input type="range" min="1" max="20" value="5" class="slider" id="missedCalls">
+                    <div class="slider-value"><span id="callsDisplay">5</span> calls</div>
+                </div>
+
+                <div class="calc-results">
+                    <h3 style="font-size: 2rem; margin-bottom: 30px;">You're Losing:</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 40px;">
+                        <div>
+                            <p style="color: rgba(255, 255, 255, 0.6); font-size: 1.1rem;">Per Week</p>
+                            <p style="font-size: 2rem; font-weight: 700; color: #30cfd0;">$<span id="weeklyLoss">12,500</span></p>
+                        </div>
+                        <div>
+                            <p style="color: rgba(255, 255, 255, 0.6); font-size: 1.1rem;">Per Month</p>
+                            <p style="font-size: 2rem; font-weight: 700; color: #30cfd0;">$<span id="monthlyLoss">50,000</span></p>
+                        </div>
+                    </div>
+                    <p style="font-size: 1.3rem; color: rgba(255, 255, 255, 0.7); margin-bottom: 10px;">Per Year</p>
+                    <div class="calc-big-number">$<span id="yearlyLoss">600,000</span></div>
+
+                    <div style="border-top: 2px solid rgba(48, 207, 208, 0.3); margin: 40px 0; padding-top: 40px;">
+                        <h3 style="font-size: 2rem; margin-bottom: 30px;">With Nokturn Professional ($597/mo):</h3>
+                        <div style="display: grid; gap: 20px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+                                <span style="font-size: 1.2rem;">Annual Revenue Captured:</span>
+                                <span style="font-size: 1.5rem; font-weight: 700; color: #30cfd0;">$<span id="captured">600,000</span></span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+                                <span style="font-size: 1.2rem;">Net Savings:</span>
+                                <span style="font-size: 1.5rem; font-weight: 700; color: #30cfd0;">$<span id="netSavings">592,836</span></span>
+                            </div>
+                        </div>
+                        <p style="font-size: 1.3rem; margin: 30px 0 10px;">Return on Investment</p>
+                        <div class="calc-big-number"><span id="roi">8275</span>%</div>
+                        <p style="font-size: 1.2rem; margin-top: 20px; color: rgba(255, 255, 255, 0.8);">For every $1 you spend on Nokturn, you make $<span id="roiMultiplier" style="font-weight: 700; color: #30cfd0;">83.75</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 60px;">
+                <button class="cta-button" onclick="showDetail('pricing')">Start Capturing These Leads</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pricing Detail -->
+    <div id="pricingDetail" class="detail-view">
+        <div class="nav-bar">
+            <button class="back-btn" onclick="showGrid()">
+                <span>←</span> Back
+            </button>
+            <div class="logo-nav">NOKTURN</div>
+        </div>
+
+        <div class="hero-section">
+            <h1>Simple Pricing</h1>
+            <p class="subtitle">Choose based on your call volume</p>
+        </div>
+
+        <div class="content-section">
+            <div class="pricing-wrapper">
+                <div class="pricing-card">
+                    <div class="pricing-name">Starter</div>
+                    <div class="pricing-price">$297<span>/mo</span></div>
+                    <p style="color: rgba(255, 255, 255, 0.6); margin: 20px 0;">Perfect for: Solo operators & small teams</p>
+                    <p style="font-weight: 600; margin-bottom: 30px;">750 minutes/mo (~7-8 calls/day)</p>
+                    <ul class="pricing-features">
+                        <li>AI Receptionist 24/7</li>
+                        <li>Appointment Booking</li>
+                        <li>Google Calendar Sync</li>
+                        <li>Lead Capture & CRM</li>
+                        <li>Call History & Logs</li>
+                        <li>1 User Account</li>
+                    </ul>
+                    <button class="cta-button" onclick="showDetail('contact')" style="width: 100%;">Get Started</button>
+                </div>
+
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Most Popular</div>
+                    <div class="pricing-name">Professional</div>
+                    <div class="pricing-price">$597<span>/mo</span></div>
+                    <p style="color: rgba(255, 255, 255, 0.6); margin: 20px 0;">Perfect for: Growing HVAC businesses</p>
+                    <p style="font-weight: 600; margin-bottom: 30px;">2,000 minutes/mo (~20 calls/day)</p>
+                    <ul class="pricing-features">
+                        <li>Everything in Starter</li>
+                        <li>SMS & Email Notifications</li>
+                        <li>Call Recording & Transcripts</li>
+                        <li>Advanced Analytics</li>
+                        <li>3 User Accounts</li>
+                        <li>Priority Support</li>
+                    </ul>
+                    <button class="cta-button" onclick="showDetail('contact')" style="width: 100%;">Get Started</button>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-name">Premium</div>
+                    <div class="pricing-price">$1,497<span>/mo</span></div>
+                    <p style="color: rgba(255, 255, 255, 0.6); margin: 20px 0;">Perfect for: High-volume & multi-location</p>
+                    <p style="font-weight: 600; margin-bottom: 30px;">6,000 minutes/mo (~60 calls/day)</p>
+                    <ul class="pricing-features">
+                        <li>Everything in Professional</li>
+                        <li>3x Call Volume</li>
+                        <li>Multi-location Support</li>
+                        <li>Custom Voice Training</li>
+                        <li>Unlimited User Accounts</li>
+                        <li>Dedicated Phone Support</li>
+                    </ul>
+                    <button class="cta-button" onclick="showDetail('contact')" style="width: 100%;">Contact Sales</button>
+                </div>
+            </div>
+
+            <p style="text-align: center; font-size: 1.1rem; color: rgba(255, 255, 255, 0.5); margin-top: 60px;">
+                All plans include • No setup fees • No contracts • Cancel anytime
+            </p>
+        </div>
+    </div>
+
+    <!-- Setup Detail -->
+    <div id="setupDetail" class="detail-view">
+        <div class="nav-bar">
+            <button class="back-btn" onclick="showGrid()">
+                <span>←</span> Back
+            </button>
+            <div class="logo-nav">NOKTURN</div>
+        </div>
+
+        <div class="hero-section">
+            <h1>Setup in 5 Minutes</h1>
+            <p class="subtitle">No complex installation. No technical skills required.</p>
+        </div>
+
+        <div class="content-section">
+            <div class="steps-wrapper">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Forward Your Calls</h3>
+                    <p>Simple call forwarding from your existing phone number. Keep the number your customers know.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Answer Questions</h3>
+                    <p>Your business name, services, pricing, and hours. Simple form takes 2 minutes to fill out.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Start Capturing Leads</h3>
+                    <p>Your AI receptionist answers every call, books appointments, and captures leads—starting now.</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 80px;">
+                <button class="cta-button" onclick="showDetail('pricing')">Get Started Now</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Detail -->
+    <div id="statsDetail" class="detail-view">
+        <div class="nav-bar">
+            <button class="back-btn" onclick="showGrid()">
+                <span>←</span> Back
+            </button>
+            <div class="logo-nav">NOKTURN</div>
+        </div>
+
+        <div class="hero-section">
+            <h1>Performance Stats</h1>
+            <p class="subtitle">See how Nokturn outperforms traditional receptionists</p>
+        </div>
+
+        <div class="content-section">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Call Answer Rate</div>
+                    <div class="stat-desc">Every single call answered. No voicemail, no missed opportunities.</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">&lt;2s</div>
+                    <div class="stat-label">Response Time</div>
+                    <div class="stat-desc">Instant pickup. Customers never wait on hold.</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Availability</div>
+                    <div class="stat-desc">168 hours per week. Nights, weekends, holidays—always on.</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">7.2x</div>
+                    <div class="stat-label">ROI</div>
+                    <div class="stat-desc">Save $51,000+ annually while capturing more leads.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title">Why Nokturn Wins</h2>
+            <div class="comparison-wrapper">
+                <div class="comparison-card">
+                    <h3>Never Miss Emergency Calls</h3>
+                    <p style="font-size: 1.1rem; line-height: 1.8; color: rgba(255, 255, 255, 0.7);">40% of HVAC calls happen after 5 PM. These are your most profitable emergency jobs—average $2,500 each.</p>
+                </div>
+
+                <div class="comparison-card">
+                    <h3>Zero Downtime</h3>
+                    <p style="font-size: 1.1rem; line-height: 1.8; color: rgba(255, 255, 255, 0.7);">No sick days, vacation days, lunch breaks, or training periods. Your AI receptionist is always ready.</p>
+                </div>
+
+                <div class="comparison-card">
+                    <h3>Instant Response</h3>
+                    <p style="font-size: 1.1rem; line-height: 1.8; color: rgba(255, 255, 255, 0.7);">Answers in under 2 seconds. Customers don't wait, they don't hang up, they don't call competitors.</p>
+                </div>
+
+                <div class="comparison-card">
+                    <h3>Perfect Consistency</h3>
+                    <p style="font-size: 1.1rem; line-height: 1.8; color: rgba(255, 255, 255, 0.7);">Same professional service every time. No bad days, no mistakes, no forgotten details.</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 60px;">
+                <button class="cta-button" onclick="showDetail('pricing')">View Pricing</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Detail -->
+    <div id="faqDetail" class="detail-view">
+        <div class="nav-bar">
+            <button class="back-btn" onclick="showGrid()">
+                <span>←</span> Back
+            </button>
+            <div class="logo-nav">NOKTURN</div>
+        </div>
+
+        <div class="hero-section">
+            <h1>Common Questions</h1>
+            <p class="subtitle">Everything you need to know about Nokturn</p>
+        </div>
+
+        <div class="content-section">
+            <div class="faq-wrapper">
+                <div class="faq-item">
+                    <div class="faq-question">How long does setup actually take?</div>
+                    <div class="faq-answer">Seriously, 5 minutes. You forward your calls, answer a few questions about your business (services, pricing, hours), and you're live. Most HVAC businesses are fully operational within one phone call to our team.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Can I keep my current phone number?</div>
+                    <div class="faq-answer">Yes. You keep your existing number—the one on your truck, website, and Google listing. We just use simple call forwarding. Your customers never know the difference.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">What happens if the AI can't handle a call?</div>
+                    <div class="faq-answer">The AI transfers complex or urgent calls directly to you or your team. You set the rules—emergency calls, specific customer requests, or technical questions can all be routed to a real person instantly.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">How is this different from a traditional receptionist?</div>
+                    <div class="faq-answer">A receptionist costs $40-50k/year, works 8 hours a day, needs breaks, gets sick, and takes vacation. Nokturn costs $297-1,497/month, works 24/7/365, never takes a break, and answers in under 2 seconds. Every single time.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">What if I need to cancel?</div>
+                    <div class="faq-answer">Cancel anytime. No contracts, no cancellation fees, no questions asked. You can turn off call forwarding in 30 seconds and you're done. We only keep customers who see real value.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Does it integrate with my calendar and CRM?</div>
+                    <div class="faq-answer">Yes. We integrate with Google Calendar, Outlook, ServiceTitan, Housecall Pro, and most major HVAC software. Appointments book directly into your existing system—no double data entry.</div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 80px;">
+                <h3 style="font-size: 2rem; margin-bottom: 30px;">Still have questions?</h3>
+                <button class="cta-button" onclick="showDetail('demo')">Try Live Demo</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Detail -->
+    <div id="contactDetail" class="detail-view">
+        <div class="nav-bar">
+            <button class="back-btn" onclick="showGrid()">
+                <span>←</span> Back
+            </button>
+            <div class="logo-nav">NOKTURN</div>
+        </div>
+
+        <div class="hero-section">
+            <h1>Stop Losing Leads.<br>Start Growing.</h1>
+            <p class="subtitle">Every minute you wait, another emergency call goes to your competitor.</p>
+        </div>
+
+        <div class="content-section">
+            <div class="demo-wrapper" style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%); border-color: rgba(102, 126, 234, 0.5);">
+                <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Get Started with Nokturn</h2>
+                <p style="font-size: 1.3rem; color: rgba(255, 255, 255, 0.7); margin-bottom: 40px;">Setup in 5 minutes. Start capturing every lead.</p>
+
+                <button class="cta-button" onclick="showDetail('demo')" style="font-size: 1.5rem; padding: 25px 60px;">Try Live Demo</button>
+
+                <div style="margin-top: 50px; display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; font-size: 1.1rem;">
+                    <div>✓ No setup fees</div>
+                    <div>✓ No contracts</div>
+                    <div>✓ Cancel anytime</div>
+                </div>
+            </div>
+
+            <div class="stats-grid" style="margin-top: 100px;">
+                <div class="stat-card">
+                    <div class="stat-label">Email Us</div>
+                    <p style="font-size: 1.8rem; font-weight: 700; color: #667eea; margin-top: 15px;">support@nokturn.com</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showDetail(section) {
+            document.getElementById('gridView').style.display = 'none';
+            document.querySelectorAll('.detail-view').forEach(d => d.classList.remove('active'));
+            document.getElementById(section + 'Detail').classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function showGrid() {
+            document.querySelectorAll('.detail-view').forEach(d => d.classList.remove('active'));
+            document.getElementById('gridView').style.display = 'block';
+        }
+
+        // ROI Calculator
+        const ticketSlider = document.getElementById('ticketValue');
+        const callsSlider = document.getElementById('missedCalls');
+
+        function updateCalculator() {
+            const ticketValue = parseInt(ticketSlider.value);
+            const missedCalls = parseInt(callsSlider.value);
+
+            document.getElementById('ticketDisplay').textContent = ticketValue.toLocaleString();
+            document.getElementById('callsDisplay').textContent = missedCalls;
+
+            const weeklyLoss = ticketValue * missedCalls;
+            const monthlyLoss = weeklyLoss * 4;
+            const yearlyLoss = weeklyLoss * 52;
+
+            document.getElementById('weeklyLoss').textContent = weeklyLoss.toLocaleString();
+            document.getElementById('monthlyLoss').textContent = monthlyLoss.toLocaleString();
+            document.getElementById('yearlyLoss').textContent = yearlyLoss.toLocaleString();
+            document.getElementById('captured').textContent = yearlyLoss.toLocaleString();
+
+            const nokturnCost = 597 * 12;
+            const netSavings = yearlyLoss - nokturnCost;
+            document.getElementById('netSavings').textContent = netSavings.toLocaleString();
+
+            const roi = Math.round((yearlyLoss / nokturnCost) * 100);
+            document.getElementById('roi').textContent = roi.toLocaleString();
+
+            const multiplier = (yearlyLoss / nokturnCost).toFixed(2);
+            document.getElementById('roiMultiplier').textContent = multiplier;
+        }
+
+        if (ticketSlider && callsSlider) {
+            ticketSlider.addEventListener('input', updateCalculator);
+            callsSlider.addEventListener('input', updateCalculator);
+        }
+    </script>
+</body>
 </html>
