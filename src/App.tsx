@@ -1,5 +1,5 @@
 /// <reference path="./custom-elements.d.ts" />
-import { Phone, ArrowRight, Zap, Clock, Calendar, Shield, DollarSign, TrendingUp, CheckCircle, XCircle } from 'lucide-react';
+import { Phone, ArrowRight, DollarSign, CheckCircle, XCircle } from 'lucide-react';
 import { useState } from 'react';
 
 function App() {
@@ -50,234 +50,86 @@ function App() {
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section id="demo" className="px-4 sm:px-6 pt-40 sm:pt-48 pb-32 sm:pb-40 relative overflow-hidden">
-        {/* Minimal gradient accent */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-500/5 rounded-full blur-3xl pointer-events-none"></div>
-
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-20 sm:mb-24">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 mb-10 sm:mb-12">
-              <div className="bg-white/5 border border-white/10 rounded-full px-4 py-2">
-                <div className="flex items-center gap-2.5">
-                  <div className="relative">
-                    <div className="w-1.5 h-1.5 bg-green-400 rounded-full"></div>
-                    <div className="absolute inset-0 w-1.5 h-1.5 bg-green-400 rounded-full animate-ping"></div>
-                  </div>
-                  <span className="text-sm font-medium text-gray-300">
-                    Live Demo Available
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Headline */}
-            <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold mb-8 sm:mb-10 leading-[0.95] tracking-tighter max-w-6xl mx-auto">
-              Never Miss Another
+      {/* Hero Section - Tight & Product-Focused */}
+      <section id="demo" className="px-4 sm:px-6 pt-32 sm:pt-36 pb-20 sm:pb-24">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            {/* Headline - Much Smaller */}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-5 leading-tight tracking-tight">
+              Answer every call.
               <br />
-              <span className="text-blue-500">
-                Emergency Call
-              </span>
+              Never lose a lead.
             </h1>
 
-            <p className="text-xl sm:text-2xl md:text-3xl text-gray-400 mb-16 sm:mb-20 max-w-4xl mx-auto leading-relaxed">
-              AI receptionist answers in under 2 seconds, books appointments instantly, and captures every lead—24/7
+            <p className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto">
+              AI receptionist for HVAC companies. Answers in under 2 seconds, books appointments, captures leads—24/7.
             </p>
           </div>
 
-          {/* Voice Widget - Cleaner */}
-          <div className="relative max-w-2xl mx-auto mb-20 sm:mb-24">
-            <div className="bg-white/[0.02] border border-white/10 rounded-3xl p-12 sm:p-16">
-              <div className="flex flex-col items-center">
-                <div className="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-6">
-                  <Phone className="w-6 h-6 text-blue-500" />
+          {/* Voice Demo - Front and Center */}
+          <div className="max-w-2xl mx-auto mb-12">
+            <div className="bg-white/[0.02] border border-white/10 rounded-2xl p-10">
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                  <span className="text-sm text-gray-400">Live Demo</span>
                 </div>
+                <span className="text-xs text-gray-500">Click to talk</span>
+              </div>
 
-                <h3 className="text-2xl sm:text-3xl font-bold mb-4">Try It Live</h3>
-                <p className="text-lg text-gray-400 mb-12 text-center max-w-lg">
-                  Ask about pricing, availability, or book an appointment
-                </p>
-
-                <div className="w-full flex items-center justify-center mb-8">
-                  {/* @ts-expect-error - Custom element from ElevenLabs */}
-                  <elevenlabs-convai agent-id="agent_0901k81qxj1bemvrzmc72xa33r7w"></elevenlabs-convai>
-                </div>
-
-                <p className="text-sm text-gray-500">
-                  Same AI your customers experience
-                </p>
+              <div className="w-full flex items-center justify-center py-4">
+                {/* @ts-expect-error - Custom element from ElevenLabs */}
+                <elevenlabs-convai agent-id="agent_0901k81qxj1bemvrzmc72xa33r7w"></elevenlabs-convai>
               </div>
             </div>
           </div>
 
           {/* CTA */}
-          <div className="flex flex-col items-center gap-8 mb-32">
-            <button className="group bg-blue-500 hover:bg-blue-600 text-white px-12 py-5 rounded-xl text-lg font-semibold transition-all flex items-center gap-3 w-full sm:w-auto">
-              <span>Start Free 14-Day Trial</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          <div className="flex flex-col items-center gap-4 mb-20">
+            <button className="group bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold transition-all flex items-center gap-2">
+              Start Free Trial
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
-
-            <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500">
-              <span>Free 14-day trial</span>
-              <span>•</span>
-              <span>No credit card required</span>
-              <span>•</span>
-              <span>Setup in 5 minutes</span>
-            </div>
+            <p className="text-sm text-gray-500">14-day trial • No credit card • 5-min setup</p>
           </div>
 
-          {/* Stats - Clean & Minimal */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <div className="text-center p-8">
-              <div className="text-6xl sm:text-7xl font-bold mb-3 text-blue-500">100%</div>
-              <div className="text-lg font-semibold text-white mb-2">Calls Answered</div>
-              <div className="text-gray-500">Never miss another lead</div>
+          {/* Quick Stats - Minimal */}
+          <div className="grid grid-cols-3 gap-8 max-w-3xl mx-auto pt-12 border-t border-white/5">
+            <div className="text-center">
+              <div className="text-3xl font-bold text-blue-500 mb-1">100%</div>
+              <div className="text-sm text-gray-500">Calls answered</div>
             </div>
-
-            <div className="text-center p-8">
-              <div className="text-6xl sm:text-7xl font-bold mb-3 text-blue-500">&lt;2s</div>
-              <div className="text-lg font-semibold text-white mb-2">Response Time</div>
-              <div className="text-gray-500">Faster than any human</div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-blue-500 mb-1">&lt;2s</div>
+              <div className="text-sm text-gray-500">Response time</div>
             </div>
-
-            <div className="text-center p-8">
-              <div className="text-6xl sm:text-7xl font-bold mb-3 text-blue-500">24/7</div>
-              <div className="text-lg font-semibold text-white mb-2">Always Available</div>
-              <div className="text-gray-500">Nights, weekends, holidays</div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-blue-500 mb-1">24/7</div>
+              <div className="text-sm text-gray-500">Always on</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Bento Grid Features */}
-      <section id="features" className="px-4 sm:px-6 py-32 sm:py-40">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 leading-tight tracking-tight">
-              Everything you need
+      {/* Cost Comparison Calculator - THE MAIN SALES TOOL */}
+      <section id="features" className="px-4 sm:px-6 py-24 sm:py-32 border-y border-white/5">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+              You're paying 10x more for 24% coverage
             </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              Built specifically for HVAC businesses
-            </p>
-          </div>
-
-          {/* Bento Grid Layout */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 sm:gap-6">
-            {/* Large feature - spans 2x2 */}
-            <div className="md:col-span-2 md:row-span-2 bg-white/[0.02] border border-white/10 rounded-3xl p-10 sm:p-12 hover:bg-white/[0.03] transition-colors">
-              <Clock className="w-12 h-12 text-blue-500 mb-6" />
-              <h3 className="text-3xl sm:text-4xl font-bold mb-4">24/7 Availability</h3>
-              <p className="text-lg text-gray-400 leading-relaxed">
-                Never miss emergency calls at 2 AM. Your AI receptionist works around the clock, even on holidays. No breaks, no sick days, no vacations.
-              </p>
-            </div>
-
-            {/* Small feature */}
-            <div className="md:col-span-2 bg-white/[0.02] border border-white/10 rounded-3xl p-8 sm:p-10 hover:bg-white/[0.03] transition-colors">
-              <Calendar className="w-10 h-10 text-blue-500 mb-4" />
-              <h3 className="text-2xl font-bold mb-3">Instant Booking</h3>
-              <p className="text-gray-400">
-                Books appointments directly into your calendar
-              </p>
-            </div>
-
-            {/* Small feature */}
-            <div className="md:col-span-2 bg-white/[0.02] border border-white/10 rounded-3xl p-8 sm:p-10 hover:bg-white/[0.03] transition-colors">
-              <Zap className="w-10 h-10 text-blue-500 mb-4" />
-              <h3 className="text-2xl font-bold mb-3">Smart Routing</h3>
-              <p className="text-gray-400">
-                Urgent calls escalated immediately to you
-              </p>
-            </div>
-
-            {/* Medium feature */}
-            <div className="md:col-span-2 bg-white/[0.02] border border-white/10 rounded-3xl p-8 sm:p-10 hover:bg-white/[0.03] transition-colors">
-              <Shield className="w-10 h-10 text-blue-500 mb-4" />
-              <h3 className="text-2xl font-bold mb-3">Complete Lead Capture</h3>
-              <p className="text-gray-400">
-                Every caller's information captured and organized automatically
-              </p>
-            </div>
-
-            {/* Medium feature */}
-            <div className="md:col-span-2 bg-white/[0.02] border border-white/10 rounded-3xl p-8 sm:p-10 hover:bg-white/[0.03] transition-colors">
-              <TrendingUp className="w-10 h-10 text-blue-500 mb-4" />
-              <h3 className="text-2xl font-bold mb-3">Call Analytics</h3>
-              <p className="text-gray-400">
-                Track peak times and make data-driven decisions
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* By the Numbers - Real Stats */}
-      <section className="px-4 sm:px-6 py-32 sm:py-40 border-y border-white/5">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6">By the numbers</h2>
-            <p className="text-xl text-gray-400">Real impact, measurable results</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 sm:gap-16">
-            <div className="text-center">
-              <div className="text-5xl sm:text-6xl font-bold mb-3 text-blue-500">168</div>
-              <div className="text-gray-400 text-lg">Hours per week</div>
-              <div className="text-sm text-gray-600 mt-2">vs 40 for humans</div>
-            </div>
-
-            <div className="text-center">
-              <div className="text-5xl sm:text-6xl font-bold mb-3 text-blue-500">$597</div>
-              <div className="text-gray-400 text-lg">Monthly cost</div>
-              <div className="text-sm text-gray-600 mt-2">vs $3,750+ for staff</div>
-            </div>
-
-            <div className="text-center">
-              <div className="text-5xl sm:text-6xl font-bold mb-3 text-blue-500">2s</div>
-              <div className="text-gray-400 text-lg">Answer time</div>
-              <div className="text-sm text-gray-600 mt-2">Every single call</div>
-            </div>
-
-            <div className="text-center">
-              <div className="text-5xl sm:text-6xl font-bold mb-3 text-blue-500">0</div>
-              <div className="text-gray-400 text-lg">Training required</div>
-              <div className="text-sm text-gray-600 mt-2">Live in 5 minutes</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Cost Comparison Calculator */}
-      <section className="px-4 sm:px-6 py-32 sm:py-40">
-        {/* Gradient accents */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl"></div>
-        </div>
-
-        <div className="max-w-5xl mx-auto relative z-10">
-          <div className="text-center mb-16 sm:mb-20">
-            <div className="inline-block mb-4">
-              <div className="bg-red-500/10 border border-red-500/20 rounded-full px-4 py-2">
-                <span className="text-sm font-semibold text-red-400">Stop Overpaying</span>
-              </div>
-            </div>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight">
-              You're Paying <span className="bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">10x More</span> For Less Coverage
-            </h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              Traditional receptionists only work 40 hours a week. ClientFlow works 168 hours—for a fraction of the cost.
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+              Receptionists work 40 hours/week. ClientFlow works 168 hours—at a fraction of the cost.
             </p>
           </div>
 
           {/* Comparison Calculator */}
           <div className="bg-[#0D1117] border border-gray-800/50 rounded-3xl p-8 sm:p-12 shadow-2xl">
             {/* Slider */}
-            <div className="mb-12">
+            <div className="mb-10">
               <div className="flex justify-between items-center mb-4">
-                <label className="text-lg font-semibold text-white">Current Receptionist Annual Salary</label>
-                <span className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                <label className="text-base font-medium text-white">Receptionist Annual Salary</label>
+                <span className="text-2xl font-bold text-blue-500">
                   ${receptionistSalary.toLocaleString()}
                 </span>
               </div>
@@ -300,29 +152,27 @@ function App() {
             </div>
 
             {/* Comparison Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Traditional Receptionist */}
-              <div className="bg-red-950/20 border-2 border-red-500/30 rounded-2xl p-8">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-12 h-12 rounded-xl bg-red-500/20 flex items-center justify-center">
-                    <XCircle className="w-6 h-6 text-red-400" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-white">Traditional Receptionist</h3>
+              <div className="bg-red-950/20 border border-red-500/30 rounded-2xl p-6">
+                <div className="flex items-center gap-2 mb-5">
+                  <XCircle className="w-5 h-5 text-red-400" />
+                  <h3 className="text-lg font-bold text-white">Traditional Receptionist</h3>
                 </div>
 
-                <div className="space-y-4 mb-8">
-                  <div className="flex justify-between items-center">
+                <div className="space-y-3 mb-6">
+                  <div className="flex justify-between items-center text-sm">
                     <span className="text-gray-400">Annual Salary</span>
-                    <span className="text-xl font-bold text-white">${receptionistSalary.toLocaleString()}</span>
+                    <span className="font-semibold text-white">${receptionistSalary.toLocaleString()}</span>
                   </div>
-                  <div className="flex justify-between items-center">
+                  <div className="flex justify-between items-center text-sm">
                     <span className="text-gray-400">Benefits (30%)</span>
-                    <span className="text-xl font-bold text-white">${(receptionistSalary * 0.3).toLocaleString()}</span>
+                    <span className="font-semibold text-white">${(receptionistSalary * 0.3).toLocaleString()}</span>
                   </div>
                   <div className="h-px bg-red-500/20"></div>
                   <div className="flex justify-between items-center">
-                    <span className="text-gray-300 font-semibold">Total Annual Cost</span>
-                    <span className="text-2xl font-bold text-red-400">${(receptionistSalary * 1.3).toLocaleString()}</span>
+                    <span className="text-sm font-medium text-gray-300">Total Annual Cost</span>
+                    <span className="text-xl font-bold text-red-400">${(receptionistSalary * 1.3).toLocaleString()}</span>
                   </div>
                 </div>
 
@@ -347,64 +197,57 @@ function App() {
               </div>
 
               {/* ClientFlow */}
-              <div className="bg-gradient-to-br from-blue-950/40 to-cyan-950/40 border-2 border-blue-500/50 rounded-2xl p-8 relative overflow-hidden">
-                {/* Glow effect */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-blue-600/20 to-cyan-500/20 rounded-2xl blur-xl"></div>
+              <div className="bg-blue-950/30 border border-blue-500/40 rounded-2xl p-6">
+                <div className="flex items-center gap-2 mb-5">
+                  <CheckCircle className="w-5 h-5 text-green-400" />
+                  <h3 className="text-lg font-bold text-white">ClientFlow AI</h3>
+                </div>
 
-                <div className="relative">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/30 to-cyan-500/30 flex items-center justify-center">
-                      <CheckCircle className="w-6 h-6 text-blue-400" />
-                    </div>
-                    <h3 className="text-2xl font-bold text-white">ClientFlow AI</h3>
+                <div className="space-y-3 mb-6">
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="text-gray-400">Annual Cost</span>
+                    <span className="font-semibold text-white">$7,164</span>
                   </div>
-
-                  <div className="space-y-4 mb-8">
-                    <div className="flex justify-between items-center">
-                      <span className="text-gray-400">Annual Cost</span>
-                      <span className="text-xl font-bold text-white">$7,164</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-gray-400">Setup & Training</span>
-                      <span className="text-xl font-bold text-white">$0</span>
-                    </div>
-                    <div className="h-px bg-blue-500/20"></div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-gray-300 font-semibold">Total Annual Cost</span>
-                      <span className="text-2xl font-bold text-green-400">$7,164</span>
-                    </div>
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="text-gray-400">Setup & Training</span>
+                    <span className="font-semibold text-white">$0</span>
                   </div>
+                  <div className="h-px bg-blue-500/20"></div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm font-medium text-gray-300">Total Annual Cost</span>
+                    <span className="text-xl font-bold text-green-400">$7,164</span>
+                  </div>
+                </div>
 
-                  <div className="space-y-3">
-                    <div className="flex items-start gap-2 text-sm text-gray-300">
-                      <CheckCircle className="w-4 h-4 mt-0.5 text-green-400 flex-shrink-0" />
-                      <span>24/7/365 coverage (100%)</span>
-                    </div>
-                    <div className="flex items-start gap-2 text-sm text-gray-300">
-                      <CheckCircle className="w-4 h-4 mt-0.5 text-green-400 flex-shrink-0" />
-                      <span>Never sick, never takes breaks</span>
-                    </div>
-                    <div className="flex items-start gap-2 text-sm text-gray-300">
-                      <CheckCircle className="w-4 h-4 mt-0.5 text-green-400 flex-shrink-0" />
-                      <span>Instant setup, zero training</span>
-                    </div>
-                    <div className="flex items-start gap-2 text-sm text-gray-300">
-                      <CheckCircle className="w-4 h-4 mt-0.5 text-green-400 flex-shrink-0" />
-                      <span>Answers every call in &lt;2 seconds</span>
-                    </div>
+                <div className="space-y-2 text-sm">
+                  <div className="flex items-start gap-2 text-gray-300">
+                    <CheckCircle className="w-4 h-4 mt-0.5 text-green-400 flex-shrink-0" />
+                    <span>24/7/365 coverage (100%)</span>
+                  </div>
+                  <div className="flex items-start gap-2 text-gray-300">
+                    <CheckCircle className="w-4 h-4 mt-0.5 text-green-400 flex-shrink-0" />
+                    <span>Never sick, never takes breaks</span>
+                  </div>
+                  <div className="flex items-start gap-2 text-gray-300">
+                    <CheckCircle className="w-4 h-4 mt-0.5 text-green-400 flex-shrink-0" />
+                    <span>Zero setup or training time</span>
+                  </div>
+                  <div className="flex items-start gap-2 text-gray-300">
+                    <CheckCircle className="w-4 h-4 mt-0.5 text-green-400 flex-shrink-0" />
+                    <span>Answers in &lt;2 seconds</span>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Savings Highlight */}
-            <div className="mt-8 bg-gradient-to-r from-green-950/40 to-emerald-950/40 border border-green-500/30 rounded-2xl p-6 sm:p-8 text-center">
-              <p className="text-gray-400 mb-2">Your Annual Savings</p>
-              <p className="text-5xl sm:text-6xl font-bold bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent mb-4">
+            <div className="mt-6 bg-green-950/30 border border-green-500/30 rounded-2xl p-6 text-center">
+              <p className="text-sm text-gray-400 mb-2">Your Annual Savings</p>
+              <p className="text-4xl sm:text-5xl font-bold text-green-400 mb-3">
                 ${((receptionistSalary * 1.3) - 7164).toLocaleString()}
               </p>
-              <p className="text-xl text-gray-300">
-                That's <span className="font-bold text-white">{(((receptionistSalary * 1.3) - 7164) / 7164).toFixed(1)}x</span> your investment back—while getting 4x more coverage
+              <p className="text-base text-gray-300">
+                {(((receptionistSalary * 1.3) - 7164) / 7164).toFixed(1)}x ROI while getting 4x more coverage
               </p>
             </div>
           </div>
@@ -634,13 +477,12 @@ function App() {
       </section>
 
       {/* Pricing Section */}
-      <section id="pricing" className="px-4 sm:px-6 py-20 sm:py-32 bg-[#0A0E14] relative overflow-hidden">
-        {/* Gradient mesh */}
-        <div className="absolute top-1/2 right-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none"></div>
-
-        <div className="max-w-6xl mx-auto relative z-10">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 text-center px-2">Choose Your Plan</h2>
-          <p className="text-sm sm:text-base text-gray-400 text-center mb-16 sm:mb-20 px-4">Based on your monthly call volume</p>
+      <section id="pricing" className="px-4 sm:px-6 py-24 sm:py-32">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-3">Simple pricing</h2>
+            <p className="text-gray-400">Choose based on your call volume</p>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 items-start">
             {/* Starter */}
